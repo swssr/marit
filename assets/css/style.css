@@ -22,7 +22,7 @@ html {
   font-weight: 300;
   overflow-x: hidden;
 
-  font-size: 18px;
+  font-size: 16px;
 
   scroll-behavior: smooth;
 }
@@ -172,13 +172,59 @@ body {
   margin: auto;
 }
 .card--overlap {
+  position: relative;
+  --p: calc(var(--mn-pad) / 1.5);
+
   width: 80vw;
-  height: 90vh;
+  height: 100vh;
 
   margin-top: -10vh;
-  padding: calc(var(--mn-pad) / 1.5);
+  padding: var(--p);
 }
 .sect-head {
   font-size: 1.8rem;
   margin-bottom: 1rem;
+  text-align: center;
+}
+.hr-list {
+  display: grid;
+  position: absolute;
+  bottom: var(--p);
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  /* grid-gap: 3rem; */
+  width: inherit;
+  height: 50vh;
+  margin-top: 2rem;
+  margin-left: calc(var(--p) * -1);
+  padding: 0 var(--p);
+  align-items: center;
+}
+.card--info {
+  position: relative;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  box-shadow: none;
+  z-index: 1;
+}
+details {
+  margin-top: 9px;
+  margin-bottom: 24px;
+}
+.link--more {
+  font-weight: 400;
+}
+.card__img {
+  position: absolute;
+  top: -24px;
+  left: -24px;
+  width: 110%;
+  height: 110%;
+  z-index: -1;
 }

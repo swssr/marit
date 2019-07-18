@@ -12,7 +12,6 @@ function toggleNav([entry]) {
     nav.classList.remove("nav--up");
   }
 }
-console.log(header);
 const navIO = new IntersectionObserver(toggleNav, navOption);
 
 navIO.observe(header);
