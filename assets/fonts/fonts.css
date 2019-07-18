@@ -1,0 +1,13 @@
+@font-face {
+  font-family: "Coalation";
+  src: url("./Coalition_v2..ttf") format("truetype");
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Minion Pro";
+  src: url("./MinionPro-Regular.otf") format("opentype");
+  font-display: swap;
+  font-style: normal;
+}

@@ -18,7 +18,8 @@
 
 html {
   width: 100%;
-  font-family: "PT Serif";
+  font-family: "Poppins";
+  font-weight: 300;
   overflow-x: hidden;
 
   font-size: 18px;
@@ -70,18 +71,13 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: whitesmoke;
   z-index: 2;
 }
 
 .link {
   text-decoration: none;
-  color: var(--gray);
-  font-weight: bold;
-}
-
-.link:hover {
-  text-decoration-line: line-through;
+  color: rgba(0, 0, 0, 0.86);
+  opacity: 0.86;
 }
 
 .logo {
@@ -94,15 +90,17 @@ body {
   grid-auto-flow: column;
 }
 .nav__links .link {
+  font-family: "Poppins";
   padding: 0 25px;
   border-right: 2px solid;
 }
 .nav__links .link {
-  border-left-color: var(--navy);
+  border-left-color: rgba(0, 0, 0, 0.86);
 }
 .nav__links .link:nth-last-child(1) {
   border: none;
 }
+
 .container {
   position: relative;
   width: 100%;
@@ -120,7 +118,6 @@ body {
 }
 
 .header-text {
-  color: var(--purple);
   font-size: 28px;
   margin-top: 80px;
 }
@@ -128,18 +125,22 @@ body {
   height: 40vh;
 }
 .hero-head {
+  font-family: "Coalation";
+
   margin-bottom: 34px;
   position: relative;
 }
 
 .hero-head {
   font-size: 4rem;
-  width: 23%;
+  width: 40vw;
+  margin-bottom: 0;
 }
 
 .sub-head {
-  font-size: 3rem;
-  font-weight: 300;
+  text-transform: uppercase;
+  font-size: 2rem;
+  opacity: 0.76;
 }
 
 /* end buttons */
