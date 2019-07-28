@@ -36,6 +36,11 @@
     </nav>
 
     <!-- END NAV -->
+    <dialog class="modal">
+      <h1 class="head-text modal__head">Test</h1>
+      <p class="modal__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. At, nemo?</p>
+      <button id="btnModalClose" class="btn btn--outline">close</button>
+    </dialog>
     <main class="main">
       <!-- START HEADER -->
       <header id="header" class="container">
@@ -143,9 +148,9 @@
         </div>
       </header>
       <!-- END HEADER -->
-      <section class="container">
+      <section class="container container--short">
         <div class="card card--overlap">
-          <h1 class="sect-head">ABOUT</h1>
+          <h1 class="head-text">OUR VISION</h1>
           <div class="hr-list">
             <div class="card card--info">
               <img
@@ -154,29 +159,24 @@
                 alt="info card 1"
               />
               <figcaption class="details">
-                <h4>Problem worth solving</h4>
+                <h4 class="card__head"> Problem worth solving</h4>
                 <details>
                   <summary>
                     Merit Branding LTO is a graphic design and web design/
                     development company
                   </summary>
-                  <p>
+                  <p data-modal-text-for="about">
                     We create new and better designs for companies that needs
-                    brand development. We are a digital company that do design
-                    posters, event cards, logos, business card, magazine
-                    designs, newspaper and ﬂayers; and brings them to life by
-                    providing with the final product. We also build any kind of
-                    website from blogs, advertise or a personal professional
-                    profile and we also building websites that will help
-                    business operate its functions better. We build and maintain
-                    the websites that we have developed.
+                    brand development.
                     <br />
                     We're a digital marketing company that exists to help
                     develop companies either existing or not existing to gain
                     customers or audience
                   </p>
                 </details>
-                <a href="" class="link link--more">learn more</a>
+                <button class="link link--more" data-trigger-for="about">
+                  learn more
+                </button>
               </figcaption>
             </div>
             <div class="card card--info">
@@ -186,12 +186,12 @@
                 alt="info card 2"
               />
               <figcaption class="details">
-                <h4>Our Solutions</h4>
+                <h4 class="card__head">Our Solutions</h4>
                 <details>
                   <summary>
                     We take advantage of modern software tooling</summary
                   >
-                  <p>
+                  <p data-modal-text-for="solutions">
                     We create posters, event cards, logos, business card,
                     magazine designs, newspaper, ﬂayers, website design. The
                     mission is to elevate business with quality designs by
@@ -200,13 +200,24 @@
                     visible to the world and increasing traffic and profit.
                   </p>
                 </details>
-                <a href="" class="link link--more">learn more</a>
+                <button class="link link--more" data-trigger-for="solutions">
+                  learn more
+                </button>
               </figcaption>
             </div>
           </div>
         </div>
       </section>
       <section class="container"></section>
+      <section class="container">
+        <h1 class="head-text">SERVICES</h1>
+      </section>
+      <section class="container">
+        <h1 class="head-text">TEAM</h1>
+      </section>
+      <section class="container" id="#contact">
+        <h1 class="head-text">GET IN TOUCH</h1>
+      </section>
     </main>
     <footer>
       <div class="footer__group">
@@ -215,21 +226,21 @@
           target="_blank"
           rel="no-referrer"
           href="https://behance.com/marit"
-          class="footer__item"
+          class="link footer__item"
           >Behance</a
         >
         <a
           target="_blank"
           rel="no-referrer"
           href="https://instagram.com/marit"
-          class="footer__item"
+          class="link footer__item"
           >Instagram</a
         >
         <a
           target="_blank"
           rel="no-referrer"
           href="https://facebook.com/marit"
-          class="footer__item"
+          class="link footer__item"
           >Facebook</a
         >
       </div>
@@ -240,7 +251,7 @@
           target="_blank"
           rel="no-referrer"
           href="tel:+27 721 172 942 "
-          class="footer__item"
+          class="link footer__item"
           >+27 721 172 942</a
         >
         <address href="" class="footer__item">
@@ -253,14 +264,14 @@
           target="_blank"
           rel="no-referrer"
           href="/legal.html/privacy"
-          class="footer__item"
+          class="link footer__item"
           >Privacy</a
         >
         <a
           target="_blank"
           rel="no-referrer"
           href="/legal.html/terms"
-          class="footer__item"
+          class="link footer__item"
           >Terms of use</a
         >
       </div>
