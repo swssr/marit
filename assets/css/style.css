@@ -14,7 +14,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: 0.4s all ease-out;
+  transition: 0.15s all ease-out;
 }
 html {
   width: 100%;
@@ -89,19 +89,28 @@ h6 {
   height: 100%;
   background-color: var(--gold);
 }
+.fab,
+.fas {
+  margin: 0 0.5rem;
+}
 /* #END-REGION DECORATIVE */
 
 /* #REGION CONTROL */
 a {
+  text-transform: uppercase;
   text-decoration: none;
   color: var(--navy);
 }
-.nav__links .link {
-  padding: 0 25px;
-  border-right: 2px solid;
+a:hover {
+  color: var(--gold);
 }
 .nav__links .link {
+  padding: 0.5rem 25px;
+  border-right: 2px solid;
   border-left-color: rgba(0, 0, 0, 0.86);
+}
+.nav__links .link:hover {
+  background-color: var(--navy);
 }
 .nav__links .link:nth-last-child(1) {
   border: none;
@@ -114,9 +123,13 @@ a {
   border: none;
   outline: none;
   cursor: pointer;
+  text-transform: uppercase;
 }
 .btn--primary {
   background-color: var(--gold);
+}
+.link {
+  text-transform: uppercase;
 }
 /* #REGION CONTROLS */
 /* #END-REGION CONTROLS */
@@ -157,7 +170,7 @@ a {
   padding: calc(var(--mn-pad) / 2.5) var(--mn-pad);
 }
 .container--short {
-  height: 70vh;
+  height: 85vh;
 }
 #header {
   padding-left: var(--mn-pad);
@@ -207,9 +220,15 @@ a {
 .icon {
   width: 20px;
   height: 20px;
+  font-size: 1.2rem;
   border-radius: 50%;
+  margin: 0 1rem;
+  padding: 0.5rem;
   /* background-color: #636363; */
   display: block;
+}
+.icon:hover {
+  color: var(--gold);
 }
 .card {
   background-color: var(--light);
@@ -311,7 +330,19 @@ details[open] summary ~ * {
   }
 }
 .link--more {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0.4rem 1rem;
   font-weight: 400;
+}
+.link--more:hover {
+  background-color: var(--navy);
+  color: var(--light);
+}
+.link--more:hover .fas {
+  transform: translateX(0.3rem);
 }
 .card__img {
   position: absolute;
