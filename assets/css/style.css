@@ -366,6 +366,7 @@ footer {
   opacity: 1;
   animation: fadeIn 400ms;
 }
+.modal + .backdrop,
 .modal::backdrop {
   background-image: linear-gradient(
     45deg,
