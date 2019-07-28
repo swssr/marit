@@ -25,15 +25,19 @@ const modalHead = document.querySelector(".modal__head");
 const modalBody = document.querySelector(".modal__text");
 const modalClose = document.querySelector("#btnModalClose");
 
+//Dialog polyfill
+dialogPolyfill.registerDialog(modal);
+
 learnLinks.forEach((link, index) => {
   link.addEventListener("click", e => {
     const modHead = link.parentNode.querySelector(".card__head").textContent;
 
     modalHead.textContent = modHead;
     modalBody.textContent = modalTexts[index].textContent;
-    typeof modal.showModal === "function"
-      ? modal.showModal()
-      : alert("Dialog not supported");
+    modal.showModal();
+    // typeof modal.showModal === "function"
+    //   ? modal.showModal()
+    //   : alert("Dialog not supported");
   });
 });
 
