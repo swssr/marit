@@ -3,7 +3,7 @@ const header = document.querySelector("header");
 const navOption = {
   root: null,
   rootMargin: "0px",
-  threshold: 0.5
+  threshold: 0.8
 };
 function toggleNav([entry]) {
   if (!entry.isIntersecting) {
