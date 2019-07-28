@@ -14,7 +14,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: 0.15s all ease-out;
+  transition: 400ms all ease-out;
 }
 html {
   width: 100%;
@@ -100,20 +100,17 @@ a {
   text-transform: uppercase;
   text-decoration: none;
   color: var(--navy);
+  font-weight: 500;
 }
 a:hover {
   color: var(--gold);
 }
 .nav__links .link {
+  position: relative;
   padding: 0.5rem 25px;
-  border-right: 2px solid;
-  border-left-color: rgba(0, 0, 0, 0.86);
 }
-.nav__links .link:hover {
+.link:hover {
   background-color: var(--navy);
-}
-.nav__links .link:nth-last-child(1) {
-  border: none;
 }
 .btn {
   padding: 1rem 2rem;
@@ -356,7 +353,7 @@ footer {
   position: sticky;
   width: 100%;
   padding: 4rem var(--mn-pad);
-  background-color: var(--base);
+  background-color: var(--light);
   display: grid;
   grid-auto-flow: column;
   justify-content: start;
