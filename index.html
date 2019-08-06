@@ -35,9 +35,9 @@
       <a href="#" class="link logo">MARIT</a>
       <div class="nav__links">
         <a href="#vision" class="link">Vision</a>
-        <a href="#about" class="link">SERVICES</a>
-        <a href="#about" class="link">Sales</a>
-        <a href="#logout" class="link">Map</a>
+        <a href="#services" class="link">SERVICES</a>
+        <a href="#team" class="link">Team</a>
+        <a href="#contact" class="link">Contact</a>
       </div>
       <span></span>
     </nav>
@@ -73,8 +73,9 @@
       </header>
       <!-- END HEADER -->
       <section class="container container--short">
-        <div class="card card--overlap">
+        <div class="card card--overlap" id="vision">
           <h1 class="head-text">OUR VISION</h1>
+          <p class="subtext">what's a venture without a mission.</p>
           <div class="hr-list">
             <div class="card card--info">
               <img
@@ -133,14 +134,90 @@
           </div>
         </div>
       </section>
-      <section class="container">
-        <h1 class="head-text">SERVICES</h1>
+      <section class="container" id="services">
+        <h1 class="head-text">WHAT WE DO</h1>
+        <p class="subtext">we know things too, we're fancy!</p>
+        <div class="service-list">
+          <figure class="card service">
+            <img
+              class="img service__img"
+              src="assets/images/daniel-korpai-1286320-unsplash.jpg"
+            />
+            <figcaption>
+              Branding
+            </figcaption>
+          </figure>
+          <figure class="card service">
+            <img
+              class="img service__img"
+              src="assets/images/daniel-korpai-1286320-unsplash.jpg"
+            />
+            <figcaption>
+              Identity design
+            </figcaption>
+          </figure>
+          <figure class="card service">
+            <img
+              class="img service__img"
+              src="assets/images/daniel-korpai-1286320-unsplash.jpg"
+            />
+            <figcaption>
+              Identity design
+            </figcaption>
+          </figure>
+          <figure class="card service">
+            <img
+              class="img service__img"
+              src="assets/images/daniel-korpai-1286320-unsplash.jpg"
+            />
+            <figcaption>
+              Web design
+            </figcaption>
+          </figure>
+        </div>
       </section>
-      <section class="container">
-        <h1 class="head-text">TEAM</h1>
+      <section class="container" id="team">
+        <h1 class="head-text">MEET THE BRAINS</h1>
+        <p class="subtext">Sad and highly motivated pack of kayotes!</p>
+        <div class="card team--card">
+          <figure class="member">
+            <img
+              class="member__img img"
+              src="assets/images/daniel-korpai-1286320-unsplash.jpg"
+            />
+            <figcaption class="member__details">
+              <h3 class="member__name">Lutho Spambo</h3>
+              <span class="tag">CEO, FOUNDER</span>
+              <p class="member__qoute">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Impedit, sint!
+              </p>
+            </figcaption>
+          </figure>
+          <figure class="member">
+            <img
+              class="member__img img"
+              src="assets/images/daniel-korpai-1286320-unsplash.jpg"
+            />
+            <figcaption class="member__details">
+              <h3 class="member__name">Simo Swssr</h3>
+              <span class="tag">UI/UX</span>
+              <p class="member__qoute">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo,
+                consectetur.
+              </p>
+            </figcaption>
+          </figure>
+        </div>
       </section>
-      <section class="container" id="#contact">
-        <h1 class="head-text">GET IN TOUCH</h1>
+      <section class="container" id="contact">
+        <h1 class="head-text">WANNA CHAT</h1>
+        <p class="subtext">Dot down your email and we'll get back to you!</p>
+
+        <form class="form">
+          <input class="input input--wide" inputmode="email" type="text" />
+          <input class="btn btn--primary form__submit" type="submit" value="DONE!">
+        </form>
       </section>
     </main>
     <footer>

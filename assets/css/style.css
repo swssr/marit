@@ -176,7 +176,172 @@ a:hover {
   justify-content: flex-end;
   background-color: transparent;
 }
-
+#services,
+#team {
+  flex-direction: column;
+  padding-left: 0;
+  padding-right: 0;
+  height: 80vh;
+}
+#services::before,
+#services::after {
+  content: "";
+  position: absolute;
+  top: 45%;
+  width: 15vw;
+  height: 80vh;
+  background-image: linear-gradient(90deg, var(--base), transparent);
+  transform: translateY(-50%);
+  z-index: 10;
+}
+#services::before {
+  left: 0;
+}
+#services::after {
+  background-image: linear-gradient(-90deg, var(--base), transparent);
+  right: 0;
+}
+.service-list {
+  height: 60vh;
+  margin-top: 2rem;
+  align-content: center;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template: 1fr / repeat(4, 1fr);
+  grid-gap: 16px;
+  overflow-x: auto;
+}
+.service {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.service__img {
+  width: 70%;
+  height: 70%;
+}
+#team {
+  height: 80vh;
+}
+.team--card {
+  position: relative;
+  margin-top: 2rem;
+  width: 100%;
+  height: 80%;
+  display: grid;
+  grid-auto-flow: column;
+}
+.member {
+  position: relative;
+  outline: 1px solid;
+  background-color: red;
+  display: grid;
+  align-items: end;
+  cursor: pointer;
+  padding: 4rem;
+  z-index: 1;
+  box-shadow: 0 0 16px 10px rgba(255, 205, 42, 1);
+}
+.member::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-color: rgba(0, 0, 0, 0.192);
+}
+.member:hover {
+  transform: scale(1.06);
+  z-index: 10;
+}
+.member:hover .member__img {
+  filter: brightness(0.8);
+}
+.member__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%;
+  height: 100%;
+  filter: grayscale(0.6) brightness(40%);
+  z-index: -1;
+}
+.member:nth-of-type(odd) {
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+}
+.member:nth-of-type(even) {
+  margin-left: -30%;
+  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
+}
+.trapez {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  filter: grayscale(0.6);
+}
+.member__details {
+  position: relative;
+  color: var(--light);
+  width: 60%;
+  height: 7rem;
+  z-index: 1;
+}
+.member:nth-of-type(even) .member__details {
+  margin-left: 2rem;
+}
+.member__details::before {
+  content: "";
+  position: absolute;
+  top: -1rem;
+  left: -8rem;
+  background-color: rgba(0, 0, 0, 0.452);
+  width: 200%;
+  height: 200%;
+  z-index: -1;
+}
+.member__name {
+  color: var(--gold) !important;
+}
+.tag {
+  font-style: 12px;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+.member__qoute {
+  margin-top: 0.5rem;
+}
+#contact {
+  height: 50vh;
+  flex-direction: column;
+}
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 6rem;
+}
+.input {
+  width: 80%;
+  height: 100%;
+  outline: none;
+  background-color: var(--light);
+  border: 2px solid var(--navy);
+  margin-top: 2rem;
+  text-indent: 16px;
+}
+.form__submit {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 20%;
+  height: 4rem;
+  border: 2px var(--navy) solid;
+}
 .header-text {
   font-size: 28px;
   margin-top: 80px;
@@ -235,6 +400,7 @@ a:hover {
   position: relative;
   --p: calc(var(--mn-pad) / 1.5);
   display: flex;
+  flex-direction: column;
   width: calc(100vw - var(--mn-pad));
   top: -10vh;
   height: 85vh;
@@ -256,7 +422,14 @@ a:hover {
   background-color: var(--gold);
   width: 4rem;
   height: 2px;
-  top: -2rem;
+  top: -1rem;
+}
+.subtext {
+  text-align: center;
+  width: 60vw;
+  margin: 1rem auto;
+  margin-top: -1rem;
+  padding: 0;
 }
 .hr-list {
   position: absolute;
@@ -333,6 +506,8 @@ details[open] summary ~ * {
   cursor: pointer;
   padding: 0.4rem 1rem;
   font-weight: 400;
+  display: flex;
+  align-items: center;
 }
 .link--more:hover {
   background-color: var(--navy);
@@ -399,7 +574,7 @@ footer {
   background-image: linear-gradient(
     45deg,
     rgba(62, 9, 62, 0.5),
-    rgba(204, 179, 34, 0.5)
+    rgba(0, 0, 0, 0.5)
   );
 }
 .modal__head {
