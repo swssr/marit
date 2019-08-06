@@ -125,6 +125,14 @@ a:hover {
 .btn--primary {
   background-color: var(--gold);
 }
+.btn--modal{
+  background-color: var(--base);
+  color: var(--navy)
+}
+.btn--modal:hover{
+  background-color: var(--navy);
+  color: var(--gold)
+}
 .link {
   text-transform: uppercase;
 }
@@ -552,7 +560,7 @@ footer {
   position: fixed;
   top: 50%;
   left: 50%;
-  width: calc(100vw - var(--mn-pad) * 2);
+  width: calc(100vw - var(--mn-pad) * 6);
   height: 60vh;
   background-color: var(--light);
   padding: 4rem;
