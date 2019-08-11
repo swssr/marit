@@ -25,7 +25,7 @@ html {
   font-weight: 400;
   overflow-x: hidden;
 
-  font-size: 16px;
+  font-size: 15px;
 
   scroll-behavior: smooth;
 }
@@ -112,7 +112,7 @@ a:hover {
 }
 .nav__links .link {
   position: relative;
-  padding: 0.5rem 25px;
+  padding: 0.5rem 1rem;
 }
 .link:hover {
   background-color: var(--navy);
@@ -622,7 +622,7 @@ details[open] summary {
 details summary::before {
   position: absolute;
   content: "";
-  left: -2rem;
+  left: -2.3rem;
   top: 0;
   width: 4px;
   height: 40px;
@@ -733,25 +733,66 @@ footer {
   :root {
     --mn-pad: 6vw;
   }
-  .card--overlap {
+  .card__head{
+    font-size: 1.4rem;
+  }
+  .details {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  details {
+    background-color: transparent !important;
+    display: none !important;
+  }
+  .modal {
+    width: 100vw;
     height: 100vh;
+  }
+  .container--short {
+    height: 100vh;
+  }
+  .card--overlap {
+    height: 100%;
   }
   .hr-list {
     flex-direction: column;
     grid-auto-flow: row;
     grid-template: 1fr 1fr/ 1fr;
-    height: 100%;
+    grid-gap: 0px;
+    height: 80%;
+    margin-top: 0;
+  }
+  #services {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  #services::before,
+  #services::after {
+    display: none;
   }
   .service-list {
     height: 100vh;
     flex-direction: column;
   }
   .service {
-    transform-origin: center;
+    transform-origin: right;
   }
+  .service--active,
   .service:hover {
     transform-origin: center;
-    transform: none;
+    transform: none !important;
+    margin: 0;
+  }
+  .service__name {
+    font-size: 16px;
+  }
+  .service::before {
+    width: 100%;
+    height: 100%;
   }
   #team {
     height: 120vh;
@@ -774,9 +815,12 @@ footer {
   }
   .member__details {
     width: 100%;
+    padding-bottom: 2rem;
   }
   .member__details::before {
+    top: -200%;
     left: -4rem;
+    height: 400%;
     width: 300%;
   }
 }
