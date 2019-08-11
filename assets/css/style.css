@@ -110,6 +110,14 @@ a {
 a:hover {
   color: var(--gold);
 }
+.logo{
+  position: relative;
+  background-color: transparent !important;
+  z-index: 1;
+}
+.logo:hover{
+  transform: scale(1.1)
+}
 .nav__links .link {
   position: relative;
   padding: 0.5rem 2rem;
@@ -141,7 +149,7 @@ a:hover {
 .link {
   text-transform: uppercase;
 }
-.menu {
+.menu--chk {
   display: none;
 }
 /* #REGION CONTROLS */
@@ -245,7 +253,7 @@ a:hover {
   align-items: center;
   cursor: pointer;
   transform: scale(0.98);
-  border: 1px solid rgba(0, 0, 0, 0.328);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
 
   overflow: hidden;
 }
@@ -296,7 +304,6 @@ a:hover {
   width: 30%;
   height: 120%;
   opacity: 0.8;
-  outline: 1px solid;
   background-color: var(--purple);
   transform: skew(-45deg) scale(0);
   z-index: 2;
@@ -368,8 +375,6 @@ a:hover {
 }
 .member {
   position: relative;
-  outline: 1px solid;
-  background-color: red;
   display: grid;
   align-items: end;
   cursor: pointer;
@@ -461,7 +466,7 @@ a:hover {
   display: grid;
   grid-template: 1fr 1fr / 1fr;
   justify-content: center;
-  border: 1px solid rgba(0, 0, 0, 0.328);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
   padding: 1px;
   width: 100%;
   height: 8rem;
@@ -594,7 +599,7 @@ a:hover {
   overflow: hidden;
   width: 100%;
   padding: 36px;
-  outline: 1px solid rgba(0, 0, 0, 0.274);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -617,11 +622,11 @@ details summary::-webkit-details-marker {
 }
 details summary {
   position: relative;
-  outline: none !important;
+  outline: none;
   cursor: pointer;
 }
 details[open] summary {
-  background-color: #ddd;
+  /* TODO: Show that it's collapsable */
 }
 details summary::before {
   position: absolute;
@@ -673,7 +678,7 @@ details[open] summary ~ * {
   width: 110%;
   height: 110%;
   filter: grayscale(0.9) brightness(1.1) blur(1px);
-  outline: 1px solid var(--navy);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
   opacity: 0.16;
   z-index: -1;
 }
@@ -743,6 +748,7 @@ footer {
 .modal__head {
   text-align: left;
 }
+/* Region: Mobile */
 @media screen and (max-width: 678px) {
   :root {
     --mn-pad: 6vw;
@@ -751,10 +757,13 @@ footer {
     width: 82vw;
     right: -96vw;
   }
-  .menu {
-    unset: all;
+  nav {
+    --btn-bottom: calc(100vh - var(--nav-height) / 2);
+  }
+  .menu--chk {
     position: absolute;
     display: block;
+    top: var(--btn-bottom);
     width: 0;
     height: 0;
     background: var(--light);
@@ -766,30 +775,45 @@ footer {
   }
   .nav__links {
     position: absolute;
+    width: 100vw;
+    height: 100vh;
     right: 0;
-    top: var(--nav-height);
+    top: calc(var(--btn-bottom) - 4rem);
+    top: 0;
     grid-auto-flow: row;
     background-color: var(--light);
-    transform: scaleY(0);
-    transform-origin: top;
+
+    clip-path: polygon(100% 80%, 100% 80%, 100% 100%, 66% 100%);
+    transform: scaleY(100%);
+    opacity: 0.16;
+    transform-origin: right;
   }
-  .menu::before {
+  .menu--chk::before {
     content: "";
     position: absolute;
     top: -1rem;
     left: 0;
-    width: 25px;
-    height: 25px;
+    width: 18px;
+    height: 18px;
     transform: translateX(-2rem);
     background-image: url(https://img.icons8.com/ios-filled/50/000000/menu.png);
     background-repeat: no-repeat;
     background-size: cover;
   }
-  .menu:checked::before {
+  .menu--chk:checked::before {
     background: url(https://img.icons8.com/material-sharp/24/000000/delete-sign.png);
   }
-  .menu:checked + .nav__links {
+  .nav__links .link {
+    display: none;
+  }
+  .menu--chk:checked + .nav__links {
+    opacity: 1;
+    top: 0;
     transform: scaleY(1) !important;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  .menu--chk:checked + .nav__links .link {
+    display: flex;
   }
   .card__head {
     font-size: 1.4rem;
@@ -842,7 +866,7 @@ footer {
   .service--active,
   .service:hover {
     transform-origin: center;
-    transform: none !important;
+    transform: scale(1);
     margin: 0;
   }
   .service__name {
@@ -885,6 +909,7 @@ footer {
     font-size: 12px;
     grid-gap: 1rem !important;
     place-content: center;
+    z-index: 0;
   }
   .footer__head {
     width: 100%;
