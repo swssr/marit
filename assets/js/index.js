@@ -35,10 +35,24 @@ learnLinks.forEach((link, index) => {
     modalHead.textContent = modHead;
     modalBody.textContent = modalTexts[index].textContent;
     modal.showModal();
-    // typeof modal.showModal === "function"
-    //   ? modal.showModal()
-    //   : alert("Dialog not supported");
+    typeof modal.showModal === "function"
+      ? modal.showModal()
+      : alert("Dialog not supported");
   });
 });
 
 modalClose.addEventListener("click", () => modal.close());
+
+//card hover
+const switchList = node => {
+  const { classList } = node;
+  const siblings = document.querySelectorAll(classList[0]);
+  const activeClass = classList[0] + "--active";
+
+  siblings.forEach(n => n.classList.remove(activeClass));
+  node.classList.remove(activeClass);
+};
+const serviceCards = document.querySelectorAll(".service");
+serviceCards.forEach(s =>
+  s.addEventListener("click", ({ currentTarget }) => switchList(currentTarget))
+);
