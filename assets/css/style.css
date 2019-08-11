@@ -139,12 +139,11 @@ a:hover {
   background-color: var(--gold);
 }
 .btn--modal {
-  background-color: var(--base);
-  color: var(--navy);
-}
-.btn--modal:hover {
   background-color: var(--navy);
   color: var(--gold);
+}
+.btn--modal:hover {
+  opacity: 0.86;
 }
 .link {
   text-transform: uppercase;
@@ -240,11 +239,11 @@ a:hover {
 }
 .service--active .service:not(:hover),
 .service-list:hover .service:not(:hover) {
-  filter: brightness(0.9) grayscale(.6);
+  filter: brightness(0.9) grayscale(0.6);
 }
 
 .service--active .service:not(:hover) .service--more,
-.service-list:hover .service:not(:hover) .service--more{
+.service-list:hover .service:not(:hover) .service--more {
   opacity: 0;
 }
 .service {
@@ -313,9 +312,9 @@ a:hover {
   justify-content: center;
 }
 .service__name {
-  color: yellow;
+  color: yellow !important;
   text-transform: uppercase;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
   opacity: 0.76;
   z-index: 10;
@@ -446,9 +445,11 @@ a:hover {
   border: none;
   margin: 0;
   padding: 0;
-  background-color: var(--light);
   text-indent: 16px;
   border-bottom: none;
+}
+.input:not(:placeholder-shown) {
+  background-color: red;
 }
 .form__submit {
   outline: none;

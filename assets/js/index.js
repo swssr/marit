@@ -20,6 +20,8 @@ navIO.observe(header);
 const learnLinks = document.querySelectorAll("[data-trigger-for]");
 const modalTexts = document.querySelectorAll("[data-modal-text-for]");
 //
+console.log(learnLinks);
+
 const modal = document.querySelector(".modal");
 const modalHead = document.querySelector(".modal__head");
 const modalBody = document.querySelector(".modal__text");
@@ -30,7 +32,7 @@ dialogPolyfill.registerDialog(modal);
 
 learnLinks.forEach((link, index) => {
   link.addEventListener("click", e => {
-    const modHead = link.parentNode.querySelector(".card__head").textContent;
+    const modHead = link.parentNode.querySelector("h4").textContent;
 
     modalHead.textContent = modHead;
     modalBody.textContent = modalTexts[index].textContent;
@@ -68,3 +70,12 @@ navLinks.forEach(link =>
     btnMenu.click();
   })
 );
+
+//Handle email form submit
+const form = document.querySelector("form");
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+  const formData = new FormData(form);
+  console.log(formData);
+});

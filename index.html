@@ -159,10 +159,11 @@
               src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
             />
             <div class="center">
-              <figcaption class="service__name">
+              <h4 class="service__name">
                 Branding
-              </figcaption>
-              <a href="#0" class="link link--more service--more">MORE</a>
+              </h4>
+              <a href="#0" class="link link--more service--more" data-trigger-for="branding">MORE</a>
+              <div data-modal-text-for="branding" hidden>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda ipsa iusto exercitationem voluptas porro officia, maiores sed harum error vero!</div>
             </div>
           </figure>
           <figure class="service card service--active">
@@ -172,10 +173,11 @@
             />
             <!-- <div class="service__stripe"></div> -->
             <div class="center">
-              <figcaption class="service__name">
+              <h4 class="service__name">
                 Web Design
-              </figcaption>
-              <a href="#0" class="link link--more service--more">MORE</a>
+              </h4>
+              <a href="#0" class="link link--more service--more" data-trigger-for="webDesign">MORE</a>
+              <div data-modal-text-for="branding" hidden>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda ipsa iusto exercitationem voluptas porro officia, maiores sed harum error vero!</div>
             </div>
           </figure>
           <figure class="service card">
@@ -184,10 +186,11 @@
               src="https://images.unsplash.com/photo-1542744173-b3cd6377db95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
             />
             <div class="center">
-              <figcaption class="service__name">
+              <h4 class="service__name">
                 App Development
-              </figcaption>
-              <a href="#0" class="link link--more service--more">MORE</a>
+              </h4>
+              <a href="#0" class="link link--more service--more" data-trigger-for="appDev">MORE</a>
+              <div data-modal-text-for="branding" hidden>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda ipsa iusto exercitationem voluptas porro officia, maiores sed harum error vero!</div>
             </div>
           </figure>
         </div>
@@ -237,6 +240,7 @@
             placeholder="human@example.com"
             inputmode="email"
             type="text"
+            name="email"
           />
           <input
             class="btn btn--primary form__submit"
