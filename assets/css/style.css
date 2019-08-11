@@ -723,6 +723,7 @@ footer {
 @media screen and (max-width: 678px) {
   :root {
     --mn-pad: 6vw;
+    --op--light: rgba(255, 255, 255, 0.16);
   }
   .stripes {
     width: 82vw;
@@ -730,6 +731,23 @@ footer {
   }
   nav {
     --btn-bottom: calc(100vh - var(--nav-height) / 2);
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+  .logo{
+    position: relative;
+    z-index: 1;
+  }
+  .logo::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: calc(var(--mn-pad) * -1);
+    width: 35vw;
+    height: 28vw;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+    background-color: var(--op--light);
+    z-index: -1;
   }
   .menu--chk {
     position: absolute;
