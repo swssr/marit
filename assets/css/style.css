@@ -277,7 +277,7 @@ a:hover {
   background-color: var(--navy);
   border: 4px solid var(--navy);
 
-  opacity: 0.56;
+  opacity: 0.76;
   z-index: 10;
 }
 .service--active::before,
@@ -885,7 +885,7 @@ footer {
   footer {
     font-size: 12px;
     grid-gap: 1rem !important;
-    place-content: center;
+    place-content: start;
     z-index: 0;
   }
   .footer__head {
