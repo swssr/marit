@@ -272,8 +272,8 @@ a:hover {
 }
 .service::before {
   content: "";
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   background-color: transparent;
   position: absolute;
   top: 50%;
@@ -282,7 +282,7 @@ a:hover {
   background-color: var(--navy);
   border: 4px solid var(--navy);
 
-  opacity: 0.76;
+  opacity: 0.56;
   z-index: 10;
 }
 .service--active .service__name,
@@ -734,12 +734,12 @@ footer {
     background-color: transparent !important;
     box-shadow: none !important;
   }
-  .logo{
+  .logo {
     position: relative;
     z-index: 1;
   }
-  .logo::before{
-    content: '';
+  .logo::before {
+    content: "";
     position: absolute;
     top: 0;
     left: calc(var(--mn-pad) * -1);
