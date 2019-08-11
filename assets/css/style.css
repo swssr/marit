@@ -752,10 +752,11 @@ footer {
     right: -96vw;
   }
   .menu {
+    unset: all;
     position: absolute;
     display: block;
-    width: 25px;
-    height: 25px;
+    width: 0;
+    height: 0;
     background: var(--light);
     outline: none;
     border: none;
@@ -775,20 +776,17 @@ footer {
   .menu::before {
     content: "";
     position: absolute;
-    top: 0;
+    top: -1rem;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--light);
+    width: 25px;
+    height: 25px;
+    transform: translateX(-2rem);
     background-image: url(https://img.icons8.com/ios-filled/50/000000/menu.png);
     background-repeat: no-repeat;
     background-size: cover;
   }
   .menu:checked::before {
     background: url(https://img.icons8.com/material-sharp/24/000000/delete-sign.png);
-  }
-  .menu:checked {
-    background-color: red;
   }
   .menu:checked + .nav__links {
     transform: scaleY(1) !important;
