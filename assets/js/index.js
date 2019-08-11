@@ -36,7 +36,6 @@ learnLinks.forEach((link, index) => {
 
     modalHead.textContent = modHead;
     modalBody.textContent = modalTexts[index].textContent;
-    modal.showModal();
     typeof modal.showModal === "function"
       ? modal.showModal()
       : alert("Dialog not supported");
