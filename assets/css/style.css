@@ -780,13 +780,20 @@ footer {
     right: 0;
     top: calc(var(--btn-bottom) - 4rem);
     top: 0;
+    justify-content: end;
+    align-items: end;
     grid-auto-flow: row;
+    grid-template: 1fr auto/ 1fr;
     background-color: var(--light);
-
+    padding: var(--mn-pad);
+    padding-bottom: 30vh;
     clip-path: polygon(100% 80%, 100% 80%, 100% 100%, 66% 100%);
     transform: scaleY(100%);
     opacity: 0.16;
     transform-origin: right;
+  }
+  .nav__links .link{
+    height: 4rem;
   }
   .menu--chk::before {
     content: "";

@@ -56,3 +56,13 @@ const serviceCards = document.querySelectorAll(".service");
 serviceCards.forEach(s =>
   s.addEventListener("click", ({ currentTarget }) => switchList(currentTarget))
 );
+
+//Close menu on nav link click
+const navLinks = document.querySelectorAll(".nav__links .link");
+const btnMenu = document.querySelector(".menu--chk");
+
+navLinks.forEach(link =>
+  link.addEventListener("click", e => {
+    btnMenu.click();
+  })
+);
