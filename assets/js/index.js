@@ -44,17 +44,19 @@ learnLinks.forEach((link, index) => {
 modalClose.addEventListener("click", () => modal.close());
 
 //card hover
-const switchList = node => {
+const switchList = (node, arr) => {
   const { classList } = node;
-  const siblings = document.querySelectorAll(classList[0]);
+  const siblings = arr || document.querySelectorAll(classList[0]);
   const activeClass = classList[0] + "--active";
-
   siblings.forEach(n => n.classList.remove(activeClass));
-  node.classList.remove(activeClass);
+  node.classList.add(activeClass);
 };
+
 const serviceCards = document.querySelectorAll(".service");
-serviceCards.forEach(s =>
-  s.addEventListener("click", ({ currentTarget }) => switchList(currentTarget))
+serviceCards.forEach((s, _, arr) =>
+  s.addEventListener("mouseover", ({ currentTarget }) => {
+    switchList(currentTarget, arr);
+  })
 );
 
 //Close menu on nav link click

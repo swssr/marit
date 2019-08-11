@@ -238,8 +238,14 @@ a:hover {
   grid-gap: 18px;
   /* background-color: red; */
 }
+.service--active .service:not(:hover),
 .service-list:hover .service:not(:hover) {
-  filter: brightness(0.9);
+  filter: brightness(0.9) grayscale(.6);
+}
+
+.service--active .service:not(:hover) .service--more,
+.service-list:hover .service:not(:hover) .service--more{
+  opacity: 0;
 }
 .service {
   position: relative;
@@ -280,10 +286,6 @@ a:hover {
   opacity: 0.76;
   z-index: 10;
 }
-.service--active::before,
-.service:hover::before {
-  background: var(--navy) !important;
-}
 .service--active .service__name,
 .service:hover .service__name {
   z-index: 10;
@@ -314,14 +316,13 @@ a:hover {
   color: yellow;
   text-transform: uppercase;
   font-size: 1.3rem;
-  letter-spacing: 2px;
-  font-weight: bold;
-  margin: 0.5rem 0;
-  opacity: 0.86;
+  font-weight: 700;
+  opacity: 0.76;
   z-index: 10;
 }
 .service--more {
   width: 5rem;
+  margin-top: 2rem;
   text-align: center;
   font-size: 1rem;
   opacity: 0;
