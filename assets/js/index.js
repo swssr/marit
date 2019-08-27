@@ -19,30 +19,38 @@ navIO.observe(header);
 //Modal toggler
 const learnLinks = document.querySelectorAll("[data-trigger-for]");
 const modalTexts = document.querySelectorAll("[data-modal-text-for]");
+const modalHeads = document.querySelectorAll("[data-modal-head-for]");
 //
-console.log(learnLinks);
-
-const modal = document.querySelector(".modal");
+const modals = document.querySelectorAll(".modal");
 const modalHead = document.querySelector(".modal__head");
 const modalBody = document.querySelector(".modal__text");
-const modalClose = document.querySelector("#btnModalClose");
+const modalClose = document.querySelectorAll("#btnModalClose");
 
+const [popup, modalEnq] = modals;
 //Dialog polyfill
-dialogPolyfill.registerDialog(modal);
+dialogPolyfill.registerDialog(popup);
 
-learnLinks.forEach((link, index) => {
-  link.addEventListener("click", e => {
-    const modHead = link.parentNode.querySelector("h4").textContent;
+learnLinks.forEach((_trigger, index) => {
+  _trigger.addEventListener("click", e => {
+    const modHead = modalHeads[index].textContent;
 
     modalHead.textContent = modHead;
     modalBody.textContent = modalTexts[index].textContent;
-    typeof modal.showModal === "function"
-      ? modal.showModal()
+    typeof popup.showModal === "function"
+      ? popup.showModal()
       : alert("Dialog not supported");
   });
 });
 
-modalClose.addEventListener("click", () => modal.close());
+//Close modal
+const closeModal = () => {
+  popup.close();
+  modalEnq.close();
+};
+
+modalClose.forEach(btn => {
+  btn.addEventListener("click", closeModal);
+});
 
 //card hover
 const switchList = (node, arr) => {
@@ -72,9 +80,50 @@ navLinks.forEach(link =>
 
 //Handle email form submit
 const form = document.querySelector("form");
+const emailInput = form.querySelector("[name=email]");
+
+//Enquiry modal popup
+const enqModal = document.querySelector(".modal--enquiry");
 
 form.addEventListener("submit", e => {
   e.preventDefault();
-  const formData = new FormData(form);
-  console.log(formData);
+
+  //Email validation
+  const isValidEmail = isEmail(emailInput.value.trim());
+
+  if (isValidEmail) {
+    enqModal.showModal();
+  } else {
+    //Prevent default and modified modal from showing on error.
+    closeModal();
+    //Adds error class to form
+    hasError(form);
+  }
 });
+
+//Utility functions
+function isEmail(_phrase) {
+  const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return pattern.test(_phrase);
+}
+
+function hasError(node) {
+  isElement(node) && node.classList.add("hasError");
+
+  setTimeout(() => {
+    node.classList.remove("hasError");
+  }, 400);
+}
+
+function isElement(obj) {
+  try {
+    return obj instanceof HTMLElement;
+  } catch (e) {
+    return (
+      typeof obj === "object" &&
+      obj.nodeType === 1 &&
+      typeof obj.style === "object" &&
+      typeof obj.ownerDocument === "object"
+    );
+  }
+}
