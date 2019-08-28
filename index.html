@@ -5,25 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link
-    href="https://fonts.googleapis.com/css?family=Poppins:300,400&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="assets/fonts/fonts.css" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+      href="https://fonts.googleapis.com/css?family=Poppins:300,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/fonts/fonts.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
 
-  <script src="https://kit.fontawesome.com/15fdcea667.js"></script>
+    <script src="https://kit.fontawesome.com/15fdcea667.js"></script>
 
-  <link
-    rel="stylesheet"
-    type="text/css"
-    href="assets/lib/dialog-polyfill.css"
-  />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="assets/lib/dialog-polyfill.css"
+    />
 
     <title>Merit Branding</title>
   </head>
-  
+
   <body>
     <!-- START BG STRIPES -->
 
@@ -37,7 +37,11 @@
     <!-- START NAV -->
     <nav class="nav--top">
       <a href="#" class="link logo"
-        ><img src="assets/images/icons/SVG/merit logo.svg" width="40" height="40" alt="logo"
+        ><img
+          src="assets/images/icons/SVG/merit logo.svg"
+          width="40"
+          height="40"
+          alt="logo"
       /></a>
       <input type="checkbox" class="menu--chk" />
       <div class="nav__links">
@@ -60,13 +64,34 @@
       </button>
     </dialog>
     <dialog class="modal modal--enquiry">
-      <h1 class="head-text modal__head">Test</h1>
-      <p class="modal__text">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. At, nemo?
-      </p>
+      <h1 class="head-text modal__head">BEFORE YOU GO</h1>
+
       <button id="btnModalClose" class="btn btn--outline btn--modal">
-        submit
+        JUST SUBMIT
       </button>
+      <button class="btn btn--modal">SEND ENQUIRY</button>
+      <div class="enquiry__form">
+        <h1 class="head-text modal__head">ENQUIRY</h1>
+        <fieldset class="form__field">
+          <label for="name">What should we call you?</label>
+          <input
+            id="name"
+            type="text"
+            placeholder="John Doe"
+            class="input modal__input input--wide"
+          />
+        </fieldset>
+        <fieldset class="form__field">
+          <label for="enquiry">What's on your mind?</label>
+          <textarea
+            type="text"
+            placeholder="Type on!"
+            class="input modal__input input--area"
+          ></textarea>
+        </fieldset>
+
+        <input type="submit" id="enqSubmit" class="btn form__submit" />
+      </div>
     </dialog>
     <main class="main">
       <!-- START HEADER -->
@@ -108,7 +133,9 @@
                 alt="info card 1"
               />
               <figcaption class="details">
-                <h4 class="card__head" data-modal-head-for="about">Problem worth solving</h4>
+                <h4 class="card__head" data-modal-head-for="about">
+                  Problem worth solving
+                </h4>
                 <details>
                   <summary>
                     Merit Branding LTO is a graphic design and web design/
@@ -135,7 +162,9 @@
                 alt="info card 2"
               />
               <figcaption class="details">
-                <h4 class="card__head" data-modal-head-for="solutions">Our Solutions</h4>
+                <h4 class="card__head" data-modal-head-for="solutions">
+                  Our Solutions
+                </h4>
                 <details>
                   <summary>
                     We take advantage of modern software tooling to satisfy all
@@ -171,8 +200,17 @@
               <h4 class="service__name" data-modal-head-for="branding">
                 Branding
               </h4>
-              <a href="#0" class="link link--more service--more" data-trigger-for="branding">MORE</a>
-              <div data-modal-text-for="branding" hidden>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda ipsa iusto exercitationem voluptas porro officia, maiores sed harum error vero!</div>
+              <a
+                href="#0"
+                class="link link--more service--more"
+                data-trigger-for="branding"
+                >MORE</a
+              >
+              <div data-modal-text-for="branding" hidden>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Assumenda ipsa iusto exercitationem voluptas porro officia,
+                maiores sed harum error vero!
+              </div>
             </div>
           </figure>
           <figure class="service card service--active">
@@ -185,8 +223,17 @@
               <h4 class="service__name" data-modal-head-for="stationary">
                 Web Design
               </h4>
-              <a href="#0" class="link link--more service--more" data-trigger-for="stationary">MORE</a>
-              <div data-modal-text-for="stationary" hidden>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda ipsa iusto exercitationem voluptas porro officia, maiores sed harum error vero!</div>
+              <a
+                href="#0"
+                class="link link--more service--more"
+                data-trigger-for="stationary"
+                >MORE</a
+              >
+              <div data-modal-text-for="stationary" hidden>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Assumenda ipsa iusto exercitationem voluptas porro officia,
+                maiores sed harum error vero!
+              </div>
             </div>
           </figure>
           <figure class="service card">
@@ -198,8 +245,17 @@
               <h4 class="service__name" data-modal-head-for="appDev">
                 Stationary
               </h4>
-              <a href="#0" class="link link--more service--more" data-trigger-for="appDev">MORE</a>
-              <div data-modal-text-for="appDev" hidden>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda ipsa iusto exercitationem voluptas porro officia, maiores sed harum error vero!</div>
+              <a
+                href="#0"
+                class="link link--more service--more"
+                data-trigger-for="appDev"
+                >MORE</a
+              >
+              <div data-modal-text-for="appDev" hidden>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                Assumenda ipsa iusto exercitationem voluptas porro officia,
+                maiores sed harum error vero!
+              </div>
             </div>
           </figure>
         </div>
@@ -217,8 +273,8 @@
               <h3 class="member__name">Lutho Spambo</h3>
               <span class="tag">CEO, FOUNDER</span>
               <p class="member__qoute">
-                I love more than I should. That's the only thing that goes above my
-                love for graphic design. Let's have fun and make your ideas
+                I love more than I should. That's the only thing that goes above
+                my love for graphic design. Let's have fun and make your ideas
                 real.
               </p>
             </figcaption>
@@ -233,7 +289,8 @@
               <span class="tag">UI/UX</span>
               <p class="member__qoute">
                 Having the temperament of an introverted old man, I'm convinced
-                my keyboard and brain hate me, they've gone through a lot of abuse.
+                my keyboard and brain hate me, they've gone through a lot of
+                abuse.
               </p>
             </figcaption>
           </figure>
@@ -258,7 +315,11 @@
             data-trigger-for="enquiry"
           />
           <div data-modal-head-for="enquiry" hidden>Before we go</div>
-          <div data-modal-text-for="enquiry" hidden>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda ipsa iusto exercitationem voluptas porro officia, maiores sed harum error vero!</div>
+          <div data-modal-text-for="enquiry" hidden>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda
+            ipsa iusto exercitationem voluptas porro officia, maiores sed harum
+            error vero!
+          </div>
         </form>
       </section>
     </main>
@@ -287,7 +348,8 @@
         <address class="footer__item">
           <span class="fas fa-address-card"></span> Suit 1005 <br />
           West Tower Building <br />
-          331 West Street <br> Durban
+          331 West Street <br />
+          Durban
         </address>
       </div>
       <div class="footer__group">
@@ -337,7 +399,6 @@
           class="link footer__item"
           >Copyright</a
         >
-      </div>
       </div>
     </footer>
     <script src="assets/lib/dialog-polyfill.js"></script>
