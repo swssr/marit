@@ -28,8 +28,10 @@ const modalClose = document.querySelectorAll("#btnModalClose");
 
 const [popup, modalEnq] = modals;
 //Dialog polyfill
+dialogPolyfill.registerDialog(modalEnq);
 dialogPolyfill.registerDialog(popup);
 
+//Foreach buttom with "learn more" or "show details" text show dialog/modal
 learnLinks.forEach((_trigger, index) => {
   _trigger.addEventListener("click", e => {
     const modHead = modalHeads[index].textContent;
@@ -43,13 +45,10 @@ learnLinks.forEach((_trigger, index) => {
 });
 
 //Close modal
-const closeModal = () => {
-  popup.close();
-  modalEnq.close();
-};
-
 modalClose.forEach(btn => {
-  btn.addEventListener("click", closeModal);
+  btn.addEventListener("click", () => {
+    btn.closest("dialog").close();
+  });
 });
 
 //card hover
@@ -82,25 +81,60 @@ navLinks.forEach(link =>
 const form = document.querySelector("form");
 const emailInput = form.querySelector("[name=email]");
 
+const formData = new FormData();
+
+const submitForm = _formData => {
+  console.log(_formData);
+
+  fetch("someapi.com/enquiry", {
+    body: _formData,
+    method: "POST"
+  })
+    .then(res => console.log)
+    .catch(err => console.log);
+};
 //Enquiry modal popup
 const enqModal = document.querySelector(".modal--enquiry");
 
 form.addEventListener("submit", e => {
   e.preventDefault();
 
+  const email = emailInput.value.trim();
   //Email validation
-  const isValidEmail = isEmail(emailInput.value.trim());
+  const isValidEmail = isEmail(email);
+
+  popup.close();
 
   if (isValidEmail) {
+    formData.append("email", email);
     enqModal.showModal();
   } else {
-    //Prevent default and modified modal from showing on error.
-    closeModal();
     //Adds error class to form
     hasError(form);
   }
 });
 
+const btnShowEnq = document.querySelector("#showEnq");
+const enqForm = document.querySelector(".enquiry__form");
+const btnSubmitEnq = document.querySelector("#enqSubmit");
+const btnJustSubmit = document.querySelector("#btnJustSubmit");
+
+//Show enquiry form
+btnShowEnq.addEventListener("click", () => {
+  enqModal.classList.add("modal--large");
+  enqForm.classList.add("show");
+});
+
+//Submit enquiry to server
+const submitEnquiry = () => {
+  submitForm(formData);
+  enqForm.classList.remove("show");
+  btnJustSubmit.closest("dialog").close();
+};
+
+//TODO:implement rate limiting
+btnJustSubmit.addEventListener("click", submitEnquiry);
+btnSubmitEnq.addEventListener("click", submitEnquiry);
 //Utility functions
 function isEmail(_phrase) {
   const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
