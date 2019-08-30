@@ -66,7 +66,10 @@
     <dialog class="modal modal--enquiry">
       <div class="enquiry__group">
         <h1 class="head-text modal__head">BEFORE YOU GO</h1>
-        <button id="btnJustSubmit" class="btn btn--outline btn--modal submit-email">
+        <button
+          id="btnJustSubmit"
+          class="btn btn--outline btn--modal submit-email"
+        >
           JUST SUBMIT
         </button>
         <button id="showEnq" class="btn btn--modal">SEND ENQUIRY</button>
@@ -74,16 +77,7 @@
       <div class="enquiry__group enquiry__form">
         <h1 class="head-text modal__head">ENQUIRY</h1>
         <fieldset class="form__field">
-          <label class="label" for="name">What should we call you?</label>
-          <input
-            id="name"
-            type="text"
-            placeholder="John Doe"
-            class="input modal__input input--wide"
-          />
-        </fieldset>
-        <fieldset class="form__field">
-          <label class="label" for="enquiry">What's on your mind?</label>
+          <label class="label" for="enquiry">How can we help you?</label>
           <textarea
             type="text"
             placeholder="Type on!"
@@ -92,7 +86,12 @@
           ></textarea>
         </fieldset>
 
-        <input type="submit" value="SUBMIT" id="enqSubmit" class="btn form__submit" />
+        <input
+          type="submit"
+          value="SEND"
+          id="enqSubmit"
+          class="btn form__submit"
+        />
       </div>
     </dialog>
     <main class="main">
