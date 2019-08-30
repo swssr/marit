@@ -118,12 +118,20 @@ a:hover {
 .logo:hover {
   transform: scale(1.1);
 }
-.nav__links .link {
+.nav--top .link {
   position: relative;
   padding: 0.5rem 2rem;
 }
-.link:hover {
+.nav--top .link--primary {
+  opacity: 0;
+}
+.nav--top.nav--up .link--primary {
+  opacity: 1;
+}
+.link:hover,
+.link--primary {
   background-color: var(--navy);
+  color: var(--gold);
 }
 .btn {
   padding: 1rem 2rem;
@@ -491,7 +499,7 @@ a:hover {
 }
 .input--area {
   padding-top: 16px;
-  height: 12rem;
+  height: 35vh;
 }
 .form__submit {
   outline: none;
