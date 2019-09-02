@@ -31,25 +31,54 @@ const [popup, modalEnq] = modals;
 dialogPolyfill.registerDialog(modalEnq);
 dialogPolyfill.registerDialog(popup);
 
+//Emaulates a database
+const ServicesCollection = [
+  {
+    name: "Branding",
+    preface: "Let us help you realize your brand identity and messaging.",
+    items: [
+      "Logo",
+      "Business Card",
+      "Other Thing",
+      "Consolutation",
+      "Design direction"
+    ]
+  },
+  {
+    name: "Web design",
+    preface:
+      "World class web design is our middlename. Also, it rhymes. scroll and order what",
+    items: [
+      "Landing Page",
+      "Scalable Website",
+      "eCommerce",
+      "Something Else",
+      "Bluh"
+    ]
+  },
+  {
+    name: "Stationary",
+    preface: "From business function to weedings, we got you covered. see...",
+    items: ["Posters", "Flyers", "Stickers", "Badges", "Pins", "Wood"]
+  }
+];
 //Foreach buttom with "learn more" or "show details" text show dialog/modal
 learnLinks.forEach((_trigger, index) => {
   _trigger.addEventListener("click", e => {
+    const data = ServicesCollection[index - 2];
     const modHead = modalHeads[index].textContent;
     //
-    const data = {
-      service: "",
-      items: ["", "", "", ""]
-    };
     const listEl = document.querySelector(".modal__list");
 
     console.log(e.target.dataset);
+    debugger;
     if (e.target.dataset.hasList) {
       listEl.style.display = "flex";
       populateList(listEl, data);
     }
     //
-    modalHead.textContent = modHead;
-    modalBody.textContent = modalTexts[index].textContent;
+    modalHead.textContent = data ? data.name : modHead;
+    modalBody.textContent = data ? data.preface : modalTexts[index].textContent;
     typeof popup.showModal === "function"
       ? popup.showModal()
       : alert("Dialog not supported");
@@ -66,8 +95,8 @@ function populateList(_listElement, _data) {
         alt="modal card img"
         class="card__img"
       />
-      <h3>item 3</h3>
-      <p class="card__descr">Pariatur facilis ab nihil ipsam.</p>
+      <h3>${x}</h3>
+      <p class="card__descr">dolor sit amet consectetur adipisicing elit. </p>
       <button class="btn btn--primary">GET QOUTE</button>
     </li>
     `;
