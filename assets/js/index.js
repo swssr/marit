@@ -35,7 +35,19 @@ dialogPolyfill.registerDialog(popup);
 learnLinks.forEach((_trigger, index) => {
   _trigger.addEventListener("click", e => {
     const modHead = modalHeads[index].textContent;
+    //
+    const data = {
+      service: "",
+      items: ["", "", "", ""]
+    };
+    const listEl = document.querySelector(".modal__list");
 
+    console.log(e.target.dataset);
+    if (e.target.dataset.hasList) {
+      listEl.style.display = "flex";
+      populateList(listEl, data);
+    }
+    //
     modalHead.textContent = modHead;
     modalBody.textContent = modalTexts[index].textContent;
     typeof popup.showModal === "function"
@@ -43,6 +55,25 @@ learnLinks.forEach((_trigger, index) => {
       : alert("Dialog not supported");
   });
 });
+
+function populateList(_listElement, _data) {
+  _listElement.innerHTML = _data.items
+    .map(x => {
+      return `
+    <li class="list__item card card--product">
+      <img
+        src="assets/images/loader.gif"
+        alt="modal card img"
+        class="card__img"
+      />
+      <h3>item 3</h3>
+      <p class="card__descr">Pariatur facilis ab nihil ipsam.</p>
+      <button class="btn btn--primary">GET QOUTE</button>
+    </li>
+    `;
+    })
+    .join("");
+}
 
 //Close modal
 modalClose.forEach(btn => {
