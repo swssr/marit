@@ -37,11 +37,31 @@ const ServicesCollection = [
     name: "Branding",
     preface: "Let us help you realize your brand identity and messaging.",
     items: [
-      "Logo",
-      "Business Card",
-      "Other Thing",
-      "Consolutation",
-      "Design direction"
+      {
+        img:
+          "https://images.unsplash.com/photo-1561070791-36c11767b26a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
+        label: "Logo"
+      },
+      {
+        img:
+          "https://images.unsplash.com/photo-1561070791-36c11767b26a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
+        label: "Business Card"
+      },
+      {
+        img:
+          "https://images.unsplash.com/photo-1561070791-36c11767b26a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
+        label: "Other Thing"
+      },
+      {
+        img:
+          "https://images.unsplash.com/photo-1561070791-36c11767b26a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
+        label: "Consolutation"
+      },
+      {
+        img:
+          "https://images.unsplash.com/photo-1561070791-36c11767b26a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
+        label: "Design direction"
+      }
     ]
   },
   {
@@ -49,32 +69,89 @@ const ServicesCollection = [
     preface:
       "World class web design is our middlename. Also, it rhymes. scroll and order what",
     items: [
-      "Landing Page",
-      "Scalable Website",
-      "eCommerce",
-      "Something Else",
-      "Bluh"
+      {
+        img:
+          "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80",
+        label: "Landing Page"
+      },
+      {
+        img:
+          "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80",
+        label: "Scalable Website"
+      },
+      {
+        img:
+          "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80",
+        label: "eCommerce"
+      },
+      {
+        img:
+          "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80",
+        label: "Something Else"
+      },
+      {
+        img:
+          "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80",
+        label: "Bluh"
+      }
     ]
   },
   {
     name: "Stationary",
     preface: "From business function to weedings, we got you covered. see...",
-    items: ["Posters", "Flyers", "Stickers", "Badges", "Pins", "Wood"]
+    items: [
+      {
+        img:
+          "https://res.cloudinary.com/swssr/image/upload/v1567471226/swssr/merit/tlf7duzdismorkb9swaz.png",
+        label: "Posters"
+      },
+      {
+        img:
+          "https://res.cloudinary.com/swssr/image/upload/v1567471226/swssr/merit/tlf7duzdismorkb9swaz.png",
+        label: "Flyers"
+      },
+      {
+        img:
+          "https://res.cloudinary.com/swssr/image/upload/v1567471226/swssr/merit/tlf7duzdismorkb9swaz.png",
+        label: "Stickers"
+      },
+      {
+        img:
+          "https://res.cloudinary.com/swssr/image/upload/v1567471226/swssr/merit/tlf7duzdismorkb9swaz.png",
+        label: "Letterhead"
+      },
+      {
+        img:
+          "https://res.cloudinary.com/swssr/image/upload/v1567471226/swssr/merit/tlf7duzdismorkb9swaz.png",
+        label: "Pins"
+      },
+      {
+        img:
+          "https://res.cloudinary.com/swssr/image/upload/v1567471226/swssr/merit/tlf7duzdismorkb9swaz.png",
+        label: "Wood"
+      }
+    ]
   }
 ];
 //Foreach buttom with "learn more" or "show details" text show dialog/modal
+let data = null;
+const listEl = document.querySelector(".modal__list");
+const btnRqQoute = document.querySelector("#btnRequestProdQoute");
+
 learnLinks.forEach((_trigger, index) => {
   _trigger.addEventListener("click", e => {
-    const data = ServicesCollection[index - 2];
     const modHead = modalHeads[index].textContent;
     //
-    const listEl = document.querySelector(".modal__list");
+    const { hasData, isForm } = e.currentTarget.dataset;
 
-    console.log(e.target.dataset);
-    debugger;
-    if (e.target.dataset.hasList) {
+    if (hasData || isForm) {
+      data = ServicesCollection[index - 2];
+      resetModal();
       listEl.style.display = "flex";
+      btnRqQoute.style.display = "block";
       populateList(listEl, data);
+    } else {
+      popup.classList.add("modal--small");
     }
     //
     modalHead.textContent = data ? data.name : modHead;
@@ -86,28 +163,36 @@ learnLinks.forEach((_trigger, index) => {
 });
 
 function populateList(_listElement, _data) {
-  _listElement.innerHTML = _data.items
-    .map(x => {
-      return `
+  _listElement.innerHTML =
+    data &&
+    data.items &&
+    _data.items
+      .map(x => {
+        return `
     <li class="list__item card card--product">
       <img
-        src="assets/images/loader.gif"
+        src="${x.img}"
         alt="modal card img"
         class="card__img"
       />
-      <h3>${x}</h3>
-      <p class="card__descr">dolor sit amet consectetur adipisicing elit. </p>
-      <button class="btn btn--primary">GET QOUTE</button>
+      <h3 class="member__name">${x.label}</h3>
     </li>
     `;
-    })
-    .join("");
+      })
+      .join("");
 }
 
+function resetModal() {
+  listEl.style.display = "none";
+  btnRqQoute.style.display = "none";
+  popup.classList.remove("modal--small");
+  modalEnq.classList.remove("modal--large");
+}
 //Close modal
 modalClose.forEach(btn => {
   btn.addEventListener("click", () => {
     btn.closest("dialog").close();
+    resetModal();
   });
 });
 
