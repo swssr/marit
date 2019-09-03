@@ -135,7 +135,7 @@ const ServicesCollection = [
 ];
 //Foreach buttom with "learn more" or "show details" text show dialog/modal
 let data = null;
-const listEl = document.querySelector(".modal__list");
+const listEl = document.querySelector(".modal .wide-list");
 const btnRqQoute = document.querySelector("#btnRequestProdQoute");
 
 learnLinks.forEach((_trigger, index) => {
@@ -162,6 +162,40 @@ learnLinks.forEach((_trigger, index) => {
   });
 });
 
+// modal list drag and scroll
+let mouseDown = false;
+let startX;
+let scrollLeft;
+
+listEl.addEventListener("mousedown", e => {
+  e.preventDefault();
+  mouseDown = true;
+  listEl.classList.add("wide-list--dragged");
+  startX = e.pageX - listEl.offsetLeft;
+  scrollLeft = listEl.scrollLeft;
+});
+listEl.addEventListener("mouseup", () => {
+  mouseDown = false;
+  listEl.classList.remove("wide-list--dragged");
+});
+listEl.addEventListener("mouseleave", () => {
+  mouseDown = false;
+  listEl.classList.remove("wide-list--dragged");
+});
+listEl.addEventListener("mouseenter", () => {
+  mouseDown = false;
+  listEl.classList.remove("wide-list--dragged");
+});
+listEl.addEventListener("mousemove", e => {
+  e.preventDefault;
+  if (!mouseDown) return;
+  const x = e.pageX - listEl.offsetLeft;
+  // console.log({ startX, x });
+  const dist = (x - startX) * 0.98;
+
+  listEl.scrollLeft = scrollLeft - dist;
+});
+//
 function populateList(_listElement, _data) {
   _listElement.innerHTML =
     data &&
@@ -190,12 +224,13 @@ function resetModal() {
 }
 //Close modal
 modalClose.forEach(btn => {
-  btn.addEventListener("click", () => {
-    btn.closest("dialog").close();
-    resetModal();
-  });
+  btn.addEventListener("click", handleModalClose);
 });
 
+function handleModalClose(_event) {
+  _event.currentTarget.closest("dialog").close();
+  resetModal();
+}
 //card hover
 const switchList = (node, arr) => {
   const { classList } = node;

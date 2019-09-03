@@ -175,7 +175,6 @@ a:hover {
   display: grid;
   place-content: center;
   color: var(--navy);
-  font-weight: bold;
   margin: 0;
   margin-top: 1rem;
   z-index: 2;
@@ -794,8 +793,12 @@ footer {
   z-index: 9999;
 }
 .modal--small {
-  width: 50vw;
-  height: 60vh;
+  width: 45vw;
+  height: 45vh;
+  min-height: 45vh;
+}
+.modal--small .modal__text{
+  height: 100%;
 }
 .modal--small .modal__text {
   padding: 0;
@@ -817,13 +820,13 @@ footer {
 .modal--large .enquiry__form {
   animation: fadeIn 400ms ease-out forwards;
 }
-.modal > *:not(.modal__list) {
+overlap shadows only on modal list .modal > *:not(.wide-list) {
   z-index: 2;
 }
 .modal__input {
   background-color: var(--base);
 }
-.modal__list {
+.wide-list {
   --gap: 1rem;
   position: relative;
   width: calc(var(--w) + var(--sm-pad));
@@ -838,8 +841,11 @@ footer {
   margin-left: calc(var(--sm-pad) * -1);
   list-style: none;
 }
-.modal__list::before,
-.modal__list::after {
+.wide-list--dragged * {
+  cursor: grabbing !important;
+}
+.wide-list::before,
+.wide-list::after {
   content: "";
   position: fixed;
   width: 10vw;
@@ -853,7 +859,7 @@ footer {
   left: -2px;
   z-index: 2;
 }
-.modal__list::after {
+.wide-list::after {
   left: unset;
   right: -2px;
   transform: rotate(180deg);
@@ -886,12 +892,13 @@ footer {
   cursor: grab;
   background-color: var(--base);
 }
-.modal__list .list__item {
+.wide-list .list__item {
   /* Card width is container width minus the gap between it's siblings all divided by number of cards  */
   --card-width: calc((var(--w) - var(--gap)) / 4);
   position: relative;
   width: var(--card-width);
-  height: 35vh;
+  height: 100%;
+  min-height: 35vh;
   margin-right: var(--gap);
   flex-shrink: 0;
   display: flex;
@@ -902,15 +909,15 @@ footer {
   padding: 36px;
   transform: scale(0.99);
 }
-.modal__list .list__item:last-child {
+.wide-list .list__item:last-child {
   margin-right: var(--card-width);
 }
-.modal__list .list__item:hover {
+.wide-list .list__item:hover {
   transform: scale(1.02);
   box-shadow: 0 0 8px rgba(255, 191, 40, 0.527);
   z-index: 10;
 }
-.modal__list:hover .list__item:not(:hover) {
+.wide-list:hover .list__item:not(:hover) {
   filter: grayscale(1) brightness(0.7);
 }
 .enquiry__group {
@@ -945,6 +952,7 @@ footer {
     rgba(62, 9, 62, 0.5),
     rgba(0, 0, 0, 0.5)
   );
+  cursor: zoom-out;
 }
 .modal__head {
   text-align: left;
@@ -1068,7 +1076,7 @@ footer {
     width: 100vw;
     height: 100vh;
   }
-  .modal__list .list__item {
+  .wide-list .list__item {
     width: calc(var(--card-width) * 3);
   }
   .container--short {
@@ -1100,7 +1108,7 @@ footer {
   .service {
     transform-origin: right;
   }
-  .service:not(:first-child){
+  .service:not(:first-child) {
     margin: 0;
   }
   .service--active,
