@@ -499,12 +499,16 @@ a:hover {
   height: 8rem;
 }
 .form__field {
-  display: grid;
-  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
   border: none;
   outline: none;
+  height: 100%;
+  max-height: 60vh;
+  margin: 1rem 0 2rem;
 }
 .label {
+  height: 2rem;
   margin: 8px 0;
 }
 .checkbox {
@@ -522,7 +526,8 @@ a:hover {
 }
 .input--area {
   padding-top: 16px;
-  height: 35vh;
+  height: 100%;
+  min-height: 35vh;
 }
 .form__submit {
   outline: none;
@@ -797,7 +802,7 @@ footer {
   height: 45vh;
   min-height: 45vh;
 }
-.modal--small .modal__text{
+.modal--small .modal__text {
   height: 100%;
 }
 .modal--small .modal__text {
@@ -818,6 +823,9 @@ footer {
   animation: fadeIn 400ms ease-out reverse;
 }
 .modal--large .enquiry__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   animation: fadeIn 400ms ease-out forwards;
 }
 overlap shadows only on modal list .modal > *:not(.wide-list) {
