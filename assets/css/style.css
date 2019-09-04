@@ -394,6 +394,7 @@ a:hover {
   height: 80%;
   display: grid;
   grid-auto-flow: column;
+  overflow: unset !important;
 }
 .member {
   position: relative;
@@ -799,7 +800,7 @@ footer {
 }
 .modal--small {
   width: 45vw;
-  height: 45vh;
+  height: 50vh;
   min-height: 45vh;
 }
 .modal--small .modal__text {
