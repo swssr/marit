@@ -598,6 +598,23 @@ a:hover {
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
   overflow: hidden;
 }
+.card__btn {
+  height: calc(100% - 2rem);
+}
+.card__actions{
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 6rem;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: .5rem 2rem; 
+  background-color: rgba(255, 255, 255, 0.16);
+  display: grid;
+  z-index: 1;
+}
 .card--overlap {
   position: relative;
   --p: calc(var(--mn-pad) / 1.5);
@@ -813,10 +830,14 @@ footer {
   text-align: justify;
   width: 100%;
 }
-.modal--small #btnModalClose {
+#btnModalClose {
   background-color: var(--navy);
   color: var(--gold);
-  width: 100%;
+  width: 3rem;
+  height: 1rem;
+  padding: 0;
+  margin: 0 auto;
+  margin-top: 2rem;
 }
 .modal--large {
   width: var(--w);
@@ -845,8 +866,9 @@ overlap shadows only on modal list .modal > *:not(.wide-list) {
   margin-left: calc(var(--sm-pad) * -1);
   display: none;
   flex-wrap: nowrap;
-  overflow: hidden;
+
   overflow-x: scroll;
+  overflow-y: visible;
   margin-top: 2rem;
   padding-left: calc(var(--sm-pad));
   margin-left: calc(var(--sm-pad) * -1);
@@ -855,9 +877,13 @@ overlap shadows only on modal list .modal > *:not(.wide-list) {
 .wide-list--dragged * {
   cursor: grabbing !important;
 }
+
+/* FIXME: disabled for debug */
 .wide-list::before,
 .wide-list::after {
   content: "";
+
+  display: none;
   position: fixed;
   width: 10vw;
   height: 100%;
@@ -905,7 +931,7 @@ overlap shadows only on modal list .modal > *:not(.wide-list) {
 }
 .wide-list .list__item {
   /* Card width is container width minus the gap between it's siblings all divided by number of cards  */
-  --card-width: calc((var(--w) - var(--gap)) / 4);
+  --card-width: calc((var(--w) - var(--gap)) / 3);
   position: relative;
   width: var(--card-width);
   height: 100%;
@@ -914,17 +940,17 @@ overlap shadows only on modal list .modal > *:not(.wide-list) {
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: space-between;
   background-color: black;
   cursor: pointer;
   padding: 36px;
-  transform: scale(0.99);
+  transform: scale(0.98);
 }
 .wide-list .list__item:last-child {
   margin-right: var(--card-width);
 }
 .wide-list .list__item:hover {
-  transform: scale(1.02);
+  transform: scale(1);
   box-shadow: 0 0 8px rgba(255, 191, 40, 0.527);
   z-index: 10;
 }

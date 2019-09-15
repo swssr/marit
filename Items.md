@@ -1,21 +1,24 @@
-##Branding
-  * logo
-  * business card
-  * poster
-  * letterhead
-  * business profile
-  * banner
-##Statinary
-  * Logo, business card, letterhead, 
-  * logo, business card, website,
-  * logo, business card, banner,
-  * logo, business card, letterhead,banner, website
-  * website, hosting, domain, prof-email
-  * 
+# Merit branding website
 
-##
-##Website
-* one page  (simple website, online cv)
-* three page website (blog, info, company portfoil)
+## Branding
 
-* business process website( )
+- logo
+- business card
+- poster
+- letterhead
+- business profile
+- banner  
+
+## Stationary
+
+- Logo, business card, letterhead,
+- logo, business card, website,
+- logo, business card, banner,
+- logo, business card, letterhead,banner, website
+- website, hosting, domain, professional email
+
+## Website-
+
+- one page (simple website, online cv)
+- three page website (blog, info, company portfoil)
+- business process website( )

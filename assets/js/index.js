@@ -50,49 +50,34 @@ const ServicesCollection = [
       {
         img:
           "https://images.unsplash.com/photo-1561070791-36c11767b26a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
-        label: "Other Thing"
+        label: "Posters, Banners"
       },
       {
         img:
           "https://images.unsplash.com/photo-1561070791-36c11767b26a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
-        label: "Consolutation"
-      },
-      {
-        img:
-          "https://images.unsplash.com/photo-1561070791-36c11767b26a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
-        label: "Design direction"
+        label: "letterhead"
       }
     ]
   },
   {
-    name: "Web design",
+    name: "Web development",
     preface:
       "World class web design is our middlename. Also, it rhymes. scroll and order what",
     items: [
       {
         img:
           "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80",
-        label: "Landing Page"
+        label: "Single page website"
       },
       {
         img:
           "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80",
-        label: "Scalable Website"
+        label: "Three page website"
       },
       {
         img:
           "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80",
-        label: "eCommerce"
-      },
-      {
-        img:
-          "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80",
-        label: "Something Else"
-      },
-      {
-        img:
-          "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80",
-        label: "Bluh"
+        label: "Business Process"
       }
     ]
   },
@@ -103,32 +88,27 @@ const ServicesCollection = [
       {
         img:
           "https://res.cloudinary.com/swssr/image/upload/v1567471226/swssr/merit/tlf7duzdismorkb9swaz.png",
-        label: "Posters"
+        label: "Pack 1"
       },
       {
         img:
           "https://res.cloudinary.com/swssr/image/upload/v1567471226/swssr/merit/tlf7duzdismorkb9swaz.png",
-        label: "Flyers"
+        label: "Pack 2"
       },
       {
         img:
           "https://res.cloudinary.com/swssr/image/upload/v1567471226/swssr/merit/tlf7duzdismorkb9swaz.png",
-        label: "Stickers"
+        label: "Pack 3"
       },
       {
         img:
           "https://res.cloudinary.com/swssr/image/upload/v1567471226/swssr/merit/tlf7duzdismorkb9swaz.png",
-        label: "Letterhead"
+        label: "Pack 4"
       },
       {
         img:
           "https://res.cloudinary.com/swssr/image/upload/v1567471226/swssr/merit/tlf7duzdismorkb9swaz.png",
-        label: "Pins"
-      },
-      {
-        img:
-          "https://res.cloudinary.com/swssr/image/upload/v1567471226/swssr/merit/tlf7duzdismorkb9swaz.png",
-        label: "Wood"
+        label: "Pack 5"
       }
     ]
   }
@@ -136,7 +116,6 @@ const ServicesCollection = [
 //Foreach buttom with "learn more" or "show details" text show dialog/modal
 let data = null;
 const listEl = document.querySelector(".modal .wide-list");
-const btnRqQoute = document.querySelector("#btnRequestProdQoute");
 
 learnLinks.forEach((_trigger, index) => {
   _trigger.addEventListener("click", e => {
@@ -148,7 +127,6 @@ learnLinks.forEach((_trigger, index) => {
       data = ServicesCollection[index - 2];
       resetModal();
       listEl.style.display = "flex";
-      btnRqQoute.style.display = "block";
       populateList(listEl, data);
     } else {
       popup.classList.add("modal--small");
@@ -197,28 +175,33 @@ listEl.addEventListener("mousemove", e => {
 });
 //
 function populateList(_listElement, _data) {
-  _listElement.innerHTML =
-    data &&
+  _listElement.innerHTML = "";
+  data &&
     data.items &&
-    _data.items
-      .map(x => {
-        return `
-    <li class="list__item card card--product">
-      <img
-        src="${x.img}"
-        alt="modal card img"
-        class="card__img"
-      />
-      <h3 class="member__name">${x.label}</h3>
-    </li>
-    `;
-      })
-      .join("");
+    _data.items.forEach(x => {
+      const listItem = document.createElement("li");
+      listItem.className = "list__item card card--product";
+      const itemImg = document.createElement("img");
+      itemImg.className = "card__img";
+      itemImg.src = x.img;
+      listItem.appendChild(itemImg);
+      const itemName = document.createElement("h3");
+      itemName.classList.add("member__name");
+      itemName.textContent = x.label;
+      listItem.appendChild(itemName);
+      const itemList = document.createElement("ul");
+      const itemActions = document.createElement("div");
+      itemActions.className = "card__actions";
+      const itemBtn = document.createElement("button");
+      itemBtn.className = "btn btn--primary card__btn";
+      itemBtn.textContent = "Order";
+      itemActions.appendChild(itemBtn);
+      listItem.appendChild(itemActions);
+      _listElement.appendChild(listItem);
+    });
 }
-
 function resetModal() {
   listEl.style.display = "none";
-  btnRqQoute.style.display = "none";
   popup.classList.remove("modal--small");
   modalEnq.classList.remove("modal--large");
 }
