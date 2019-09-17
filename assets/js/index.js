@@ -61,8 +61,7 @@ const ServicesCollection = [
   },
   {
     name: "Web development",
-    preface:
-      "World class web design is our middlename. Also, it rhymes. scroll and order what",
+    preface: "World class web design is our middlename. scroll and order",
     items: [
       {
         img:

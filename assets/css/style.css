@@ -10,7 +10,7 @@
   --sm-pad: 4rem;
   --nav-height: 10vh;
 
-  --yellow-shadow: 0 0 24px 10px rgba(255, 191, 40, 0.527);
+  --yellow-shadow: 0 0 24px 10px rgba(255, 191, 40, 0.247);
 }
 
 ::-webkit-scrollbar {
@@ -58,7 +58,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: var(--navy) !important;
+  color: var(--navy);
 }
 /* #END-REGION TYPOGRAPHY */
 
@@ -233,10 +233,13 @@ a:hover {
 .container--short {
   height: 85vh;
 }
-.container--overlap{
+.flex {
   display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.flex--col {
   flex-direction: column;
-
 }
 #header {
   padding-left: var(--mn-pad);
@@ -264,7 +267,7 @@ a:hover {
   position: absolute;
   top: 45%;
   width: 15vw;
-  height: 80vh;
+  height: 100vh;
   background-image: linear-gradient(90deg, var(--base), transparent);
   transform: translateY(-50%);
   z-index: 10;
@@ -605,18 +608,20 @@ a:hover {
   overflow: hidden;
 }
 .card__btn {
-  height: calc(100% - 2rem);
+  margin: 0;
+  height: 100%;
+  background-color: rgba(255, 191, 40, 0.397);
 }
-.card__actions{
-  content: '';
+.card__actions {
+  content: "";
   position: absolute;
   width: 100%;
-  height: 6rem;
+  height: 4rem;
   left: 0;
   right: 0;
   bottom: 0;
   margin: 0;
-  padding: .5rem 2rem; 
+  /* padding: 0.5rem 2rem; */
   background-color: rgba(255, 255, 255, 0.16);
   display: grid;
   z-index: 1;
@@ -640,6 +645,7 @@ a:hover {
   text-align: center;
   display: flex;
   justify-content: center;
+  text-transform: uppercase;
 
   font-weight: bold;
   text-align: center !important;
@@ -668,7 +674,6 @@ a:hover {
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 2rem;
   align-items: center;
 }
 .card--info {
@@ -677,17 +682,40 @@ a:hover {
   overflow: hidden;
   width: 100%;
   padding: 36px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
+  background-color: var(--purple);
+  color: rgba(255, 255, 255, 0.699);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-
+  
   box-shadow: none;
   z-index: 1;
 }
+.hr-list:first-of-type::before{
+  content: '';
+  position: absolute;
+  background-color: red;
+  width: calc(100% - var(--mn-pad) * 2);
+  box-shadow: 0 0 16px 4px rgba(255, 191, 40, 0.397);
+  height: inherit;
+}
+.card__head{
+  color: var(--gold);
+}
+.card--info .card__img {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 110%;
+  height: 110%;
+  filter: grayscale(0.6) brightness(40%);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
+  opacity: 0.9;
+  z-index: -1;
+}
 .card--info:hover .card__img {
-  filter: grayscale(0.8) brightness(1) blur(0);
-  opacity: 0.2;
+  filter: grayscale(0.8) brightness(40%);
+  opacity: 1;
 }
 details {
   position: relative;
@@ -709,14 +737,14 @@ details[open] summary {
 details summary::before {
   position: absolute;
   content: "";
-  left: -2.3rem;
+  left: -2.8rem;
   top: 0;
-  width: 4px;
+  width: 8px;
   height: 40px;
   background-color: black;
 }
 details:not([open]) summary::before {
-  background-color: var(--gold);
+  background-color: var(--navy);
 }
 details[open] summary ~ * {
   animation: show 1s forwards;
@@ -735,14 +763,11 @@ details[open] summary ~ * {
 .link--more {
   outline: none;
   border: none;
-  background-color: transparent;
   cursor: pointer;
   padding: 0.4rem 1rem;
   font-weight: 400;
   display: flex;
   align-items: center;
-}
-.link--more:hover {
   background-color: var(--navy);
   color: var(--light);
 }
@@ -755,20 +780,22 @@ details[open] summary ~ * {
   left: -10px;
   width: 110%;
   height: 110%;
-  filter: grayscale(0.9) brightness(1.1) blur(1px);
+  filter: grayscale(0.6) brightness(40%);
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.16);
-  opacity: 0.16;
+  opacity: 0.46;
   z-index: -1;
 }
 /* FOOTER */
 footer {
   position: sticky;
   width: 100%;
+  height: 40vh;
   padding: var(--sm-pad) var(--mn-pad);
   background-color: var(--light);
   display: grid;
   grid-auto-flow: column;
-  justify-content: start;
+  align-items: end;
+  justify-content: space-between;
   grid-gap: var(--sm-pad);
   bottom: 0;
   z-index: 10;
@@ -791,6 +818,7 @@ footer {
   margin-bottom: 0.8rem;
   color: var(--navy);
   text-align: left;
+  text-transform: uppercase;
 }
 .footer__item {
   margin: 0.1rem 0;
@@ -837,13 +865,19 @@ footer {
   width: 100%;
 }
 #btnModalClose {
-  background-color: var(--navy);
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.452);
+  opacity: 0.86;
   color: var(--gold);
-  width: 3rem;
-  height: 1rem;
+  width: 6rem;
+  height: 0.5rem;
   padding: 0;
   margin: 0 auto;
-  margin-top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(var(--sm-pad) - 2rem);
+  animation: hey 4000ms infinite;
+  /* bottom: 0; */
 }
 .modal--large {
   width: var(--w);
@@ -852,13 +886,18 @@ footer {
 .modal--large .enquiry__group:first-child {
   animation: fadeIn 400ms ease-out reverse;
 }
+/* Hide enquiry form when modal is in small state */
+.modal--small .enquiry__form {
+  display: none;
+}
 .modal--large .enquiry__form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   animation: fadeIn 400ms ease-out forwards;
 }
-overlap shadows only on modal list .modal > *:not(.wide-list) {
+/* overlap shadows only on modal list  */
+.modal > *:not(.wide-list) {
   z-index: 2;
 }
 .modal__input {
@@ -957,7 +996,7 @@ overlap shadows only on modal list .modal > *:not(.wide-list) {
 }
 .wide-list .list__item:hover {
   transform: scale(1);
-  box-shadow: 0 0 8px rgba(255, 191, 40, 0.527);
+  box-shadow: 0 0 8px rgba(255, 191, 40, 0.363);
   z-index: 10;
 }
 .wide-list:hover .list__item:not(:hover) {
@@ -1245,5 +1284,16 @@ overlap shadows only on modal list .modal > *:not(.wide-list) {
   }
   to {
     transform: scale(1.01) translateX(5px);
+  }
+}
+@keyframes hey {
+  0% {
+    margin-bottom: 0;
+  }
+  50% {
+    margin-bottom: 4px;
+  }
+  100% {
+    margin-bottom: 0px;
   }
 }
