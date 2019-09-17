@@ -233,12 +233,18 @@ a:hover {
 .container--short {
   height: 85vh;
 }
+.container--overlap{
+  display: flex;
+  flex-direction: column;
+
+}
 #header {
   padding-left: var(--mn-pad);
   padding-bottom: var(--sm-pad);
   flex-direction: column;
   justify-content: flex-end;
   background-color: transparent;
+  height: 95vh;
 }
 #team {
   padding-left: 0;
@@ -548,7 +554,7 @@ a:hover {
 }
 .hero {
   height: 40vh;
-  margin-bottom: 5vh;
+  /* margin-bottom: 5vh; */
 }
 .hero-head {
   font-family: "Coalation";
@@ -818,7 +824,7 @@ footer {
   z-index: 9999;
 }
 .modal--small {
-  width: 45vw;
+  width: 50vw;
   height: 50vh;
   min-height: 45vh;
 }
