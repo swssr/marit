@@ -1,6 +1,6 @@
 # Merit branding website
 
-4    
+ 
 ## Branding
 
 > offer packs, customisable

@@ -687,19 +687,18 @@ a:hover {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  
+
   box-shadow: none;
   z-index: 1;
 }
-.hr-list:first-of-type::before{
-  content: '';
+.hr-list:first-of-type::before {
+  content: "";
   position: absolute;
-  background-color: red;
   width: calc(100% - var(--mn-pad) * 2);
   box-shadow: 0 0 16px 4px rgba(255, 191, 40, 0.397);
-  height: inherit;
+  height: 50vh;
 }
-.card__head{
+.card__head {
   color: var(--gold);
 }
 .card--info .card__img {
