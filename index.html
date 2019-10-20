@@ -65,25 +65,38 @@
       </div>
     </dialog>
     <dialog class="modal modal--enquiry modal--small">
-      <div class="enquiry__group">
+      <div class="enquiry__group flex--col">
         <h1 class="head-text modal__head">BEFORE YOU GO</h1>
-        <button
-          id="btnJustSubmit"
-          class="btn btn--modal btn--fill submit-email"
-        >
-          JUST SUBMIT
-        </button>
-        <button id="showEnq" class="btn btn--modal btn--fill">
-          SEND ENQUIRY
-        </button>
+        <p class="subtext">Anything you want to add?</p>
+        <div class="flex flex--col m-auto">
+          <button
+            id="btnJustSubmit"
+            class="btn btn--modal btn--fill submit-email"
+          >
+            JUST SUBMIT
+          </button>
+          <button id="showEnq" class="btn btn--modal btn--fill">
+            SEND ENQUIRY
+          </button>
+        </div>
       </div>
       <div class="enquiry__group enquiry__form">
         <h1 class="head-text modal__head">ENQUIRY</h1>
+        <fieldset class="form__field">
+          <label class="label" for="enquiry">Your email</label>
+          <input
+            type="text"
+            id="modalEmail"
+            placeholder="human@example.com"
+            class="input modal__input"
+          />
+        </fieldset>
         <fieldset class="form__field">
           <label class="label" for="enquiry">How can we help you?</label>
           <textarea
             type="text"
             placeholder="Type on!"
+            id="enquiryBody"
             class="input modal__input input--area"
           ></textarea>
         </fieldset>
@@ -97,37 +110,38 @@
       </div>
       <button id="btnModalClose" class="btn btn--modal"></button>
     </dialog>
+    <!-- START HEADER -->
+    <header id="header" class="container">
+      <img
+        src="assets/images/daniel-korpai-1286320-unsplash.jpg"
+        alt="man using computer"
+        class="img img--bg"
+      />
+      <div class="hero">
+        <h1 class="hero-head">merit</h1>
+        <p class="sub-head">Branding Lto</p>
+        <button class="btn btn--primary">GET IN TOUCH</button>
+      </div>
+      <div class="social-icons">
+        <a
+          href="https://www.instagram.com/meritbrandinglto/"
+          class="icon fab fa-instagram"
+        >
+        </a>
+        <a
+          href="https://behance.com/luthospambo"
+          class="icon fab fa-behance"
+        ></a>
+        <a
+          href="https://facebook.com/meritbrandiglto"
+          class="icon fab fa-facebook"
+        >
+        </a>
+      </div>
+    </header>
+    <!-- END HEADER -->
+
     <main class="main">
-      <!-- START HEADER -->
-      <header id="header" class="container">
-        <img
-          src="assets/images/daniel-korpai-1286320-unsplash.jpg"
-          alt="man using computer"
-          class="img img--bg"
-        />
-        <div class="hero">
-          <h1 class="hero-head">merit</h1>
-          <p class="sub-head">Branding Lto</p>
-          <button class="btn btn--primary">GET IN TOUCH</button>
-        </div>
-        <div class="social-icons">
-          <a
-            href="https://www.instagram.com/meritbrandinglto/"
-            class="icon fab fa-instagram"
-          >
-          </a>
-          <a
-            href="https://behance.com/luthospambo"
-            class="icon fab fa-behance"
-          ></a>
-          <a
-            href="https://facebook.com/meritbrandiglto"
-            class="icon fab fa-facebook"
-          >
-          </a>
-        </div>
-      </header>
-      <!-- END HEADER -->
       <section class="container container--short flex flex--col">
         <h1 class="head-text">OUR VISION</h1>
         <p class="subtext">what's a venture without a mission.</p>
@@ -303,12 +317,17 @@
           </figure>
         </div>
       </section>
+      <section class="container flex--col">
+        <h1 class="head-text">GET IN TOUCH</h1>
+        <p class="subtext">Call us, email us, do you!</p>
+      </section>
       <section class="container" id="contact">
-        <h1 class="head-text">WANNA CHAT</h1>
+        <h1 class="head-text">ENQUIRIES</h1>
         <p class="subtext">Dot down your email and we'll get back to you!</p>
 
         <form class="form">
           <input
+            id="email"
             class="input input--wide form__input"
             placeholder="HUMAN@EXAMPLE.COM"
             inputmode="email"
@@ -330,75 +349,61 @@
           </div>
         </form>
       </section>
-      <section class="container"></section>
     </main>
     <footer>
       <div class="footer__group">
-        <h4 class="footer__head">Contact</h4>
-        <span class="footer__item"
-          ><span class="fas fa-user"></span> Mr AL. Spambo</span
-        >
-        <a
-          target="_blank"
-          rel="no-referrer"
-          href="tel:+27 721 172 942 "
-          class="link footer__item"
-          ><span class="fas fa-phone-square"></span> +27 721 172 942</a
-        >
-        <address class="footer__item">
-          <span class="fas fa-address-card"></span> Suit 1005 West Tower
-          Building, <br />
-          331 West Street Durban
-        </address>
-      </div>
-      <div class="">
-        <a
-          target="_blank"
-          rel="no-referrer"
-          href="https://instagram.com/meritbrandinglto"
-          class="link footer__item"
-          ><span class="fab fa-instagram"></span
-        ></a>
-        <a
-          target="_blank"
-          rel="no-referrer"
-          href="https://behance.com/luthospambo"
-          class="link footer__item"
-          ><span class="fab fa-behance"></span
-        ></a>
         <a
           target="_blank"
           rel="no-referrer"
           href="https://facebook.com/meritbrandiglto"
-          class="link footer__item"
-          ><span class="fab fa-facebook"></span
-        ></a>
+          class="link footer__link"
+          >Facebook</a
+        >
+        <a
+          target="_blank"
+          rel="no-referrer"
+          href="https://www.instagram.com/meritbrandinglto"
+          class="link footer__link"
+          >Instagram</a
+        >
+        <a
+          target="_blank"
+          rel="no-referrer"
+          href="https://behance.com/meritbranding"
+          class="link footer__link"
+          >behance</a
+        >
       </div>
-      <div>
-        <div class="footer__group">
-          <h4 class="footer__head">Legal</h4>
-          <a
-            target="_blank"
-            rel="no-referrer"
-            href="/legal.html/privacy"
-            class="link footer__item"
-            >Privacy</a
-          >
-          <a
-            target="_blank"
-            rel="no-referrer"
-            href="/legal.html/terms"
-            class="link footer__item"
-            >Terms</a
-          >
-          <a
-            target="_blank"
-            rel="no-referrer"
-            href="/legal.html/copyright"
-            class="link footer__item"
-            >Copyright</a
-          >
-        </div>
+      <div class="footer__group">
+        <a
+          target="_blank"
+          rel="no-referrer"
+          href="/legal.html/privacy"
+          class="link footer__link"
+          ><strong>Designed By Swssr</strong></a>
+      </div>
+      <div class="footer__group">
+        <a
+          target="_blank"
+          rel="no-referrer"
+          href="/legal.html/privacy"
+          class="link footer__link"
+          >Enquiries</a
+        >
+        <a
+          target="_blank"
+          rel="no-referrer"
+          href="/legal.html/terms"
+          class="link footer__link"
+          >Legal</a
+        >
+        <a
+          target="_blank"
+          rel="no-referrer"
+          href="/legal.html/copyright"
+          class="link footer__link"
+          >Copyright</a
+        >
       </div>
     </footer>
     <script src="assets/lib/dialog-polyfill.js"></script>

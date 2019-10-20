@@ -241,24 +241,30 @@ navLinks.forEach(link =>
 
 //Handle email form submit
 const form = document.querySelector("form");
-const emailInput = form.querySelector("[name=email]");
+const emailInput = form.querySelector("#email");
+const modalEmailInput = document.querySelector("#modalEmail");
 
 const formData = new FormData();
 
+const bindFormData = ({ email, body }) => {
+  formData.append("email", email);
+  formData.append("body", body);
+  enqModal.showModal();
+};
+
 const submitForm = _formData => {
-  console.log(_formData);
+  console.log(_formData.getAll("email"));
 
   fetch("someapi.com/enquiry", {
     body: _formData,
     method: "POST"
   })
-    .then(res => console.log)
-    .catch(err => console.log);
+    .then(console.log)
+    .catch(console.log);
 };
 //Enquiry modal popup
 const enqModal = document.querySelector(".modal--enquiry");
-
-form.addEventListener("submit", e => {
+const handleFormSubmit = e => {
   e.preventDefault();
 
   const email = emailInput.value.trim();
@@ -268,35 +274,48 @@ form.addEventListener("submit", e => {
   popup.close();
 
   if (isValidEmail) {
-    formData.append("email", email);
-    enqModal.showModal();
+    const _data = {
+      email,
+      body: ""
+    };
+    bindFormData(_data);
   } else {
     //Adds error class to form
     hasError(form);
   }
-});
+};
+form.addEventListener("submit", handleFormSubmit);
 
 const btnShowEnq = document.querySelector("#showEnq");
 const enqForm = document.querySelector(".enquiry__form");
 const btnSubmitEnq = document.querySelector("#enqSubmit");
 const btnJustSubmit = document.querySelector("#btnJustSubmit");
-
+const enquiryBody = enqForm.querySelector("#enquiryBody").value;
 //Show enquiry form
-btnShowEnq.addEventListener("click", () => {
+function showEnquiryForm() {
   enqModal.classList.add("modal--large");
   enqForm.classList.add("show");
-});
+  enqForm.querySelector("#modalEmail").value = formData.get("email");
+  enquiryBody = formData.get("body") || "";
+}
+
+btnShowEnq.addEventListener("click", showEnquiryForm);
 
 //Submit enquiry to server
-const submitEnquiry = () => {
-  submitForm(formData);
-  enqForm.classList.remove("show");
-  btnJustSubmit.closest("dialog").close();
-};
+const submitEnquiry = _formData => submitForm(_formData);
 
 //TODO:implement rate limiting
-btnJustSubmit.addEventListener("click", submitEnquiry);
-btnSubmitEnq.addEventListener("click", submitEnquiry);
+const handleSubmit = (_formData = formData) => {
+  enqForm.classList.remove("show");
+  btnJustSubmit.closest("dialog").close();
+  submitEnquiry(_formData);
+};
+
+btnJustSubmit.addEventListener("click", () => {
+  bindFormData({ body: enquiryBody });
+  handleSubmit();
+});
+btnSubmitEnq.addEventListener("click", handleSubmit);
 //Utility functions
 function isEmail(_phrase) {
   const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -305,10 +324,7 @@ function isEmail(_phrase) {
 
 function hasError(node) {
   isElement(node) && node.classList.add("hasError");
-
-  setTimeout(() => {
-    node.classList.remove("hasError");
-  }, 400);
+  setTimeout(() => node.classList.remove("hasError"), 400);
 }
 
 function isElement(obj) {
