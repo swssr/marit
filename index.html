@@ -36,21 +36,15 @@
     <!-- END JUMPUP -->
     <!-- START NAV -->
     <nav class="nav--top">
-      <a href="#" class="link logo"
-        ><img
-          src="assets/images/icons/SVG/merit logo.svg"
-          width="40"
-          height="40"
-          alt="logo"
-      /></a>
+      <img src="assets/images/icons/Logo.svg" class="logo" alt="logo" />
       <input type="checkbox" class="menu--chk" />
       <div class="nav__links">
         <a href="#vision" class="link">Vision</a>
-        <a href="#services" class="link">SERVICES</a>
+        <a href="#services" class="link">Services</a>
         <a href="#team" class="link">Team</a>
         <a href="#contact" class="link">Contact</a>
+        <a href="#contact" class="link link--primary">GET QOUTE</a>
       </div>
-      <a href="#contact" class="link link--primary">Request Qoute</a>
     </nav>
 
     <!-- END NAV -->
@@ -117,10 +111,26 @@
         alt="man using computer"
         class="img img--bg"
       />
+      <div class="social-icons"></div>
       <div class="hero">
-        <h1 class="hero-head">merit</h1>
-        <p class="sub-head">Branding Lto</p>
-        <button class="btn btn--primary">GET IN TOUCH</button>
+        <h1 class="hero__head">
+          Bringing Ideas to fruition using design & logic
+        </h1>
+        <p class="hero__body">
+          Merit branding is an awesome, fresh, futurre facing graphic and
+          interaction design company.
+        </p>
+        <form id="hero__form">
+          <input
+            placeholder="YOUR EMAIL ADDRESS"
+            type="text"
+            name="hero__email"
+            id="hero__email"
+            class="input"
+            class="btn btn--primary"
+          />
+          <button class="btn btn--primary" type="submit">get in touch</button>
+        </form>
       </div>
       <div class="social-icons">
         <a
@@ -145,21 +155,21 @@
       <section class="container container--short flex flex--col">
         <h1 class="head-text">OUR VISION</h1>
         <p class="subtext">what's a venture without a mission.</p>
-        <div class="hr-list">
+        <div class="hr-list bg-white">
           <figure class="card card--info">
             <img
-              class="card__img"
-              src="https://images.unsplash.com/photo-1444718070663-99afd7176287?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
+              class="img card__img"
+              src="assets/images/daniel-korpai-1286320-unsplash.jpg"
               alt="info card 1"
             />
             <figcaption class="details">
               <h4 class="card__head" data-modal-head-for="about">
                 Problem worth solving
               </h4>
-              <details>
+              <details class="card__body">
                 <summary>
-                  Merit Branding LTO is a graphic design and web design/
-                  development company
+                  Every business from startup to legacy has it's unique problem,
+                  we adapt to solve them.
                 </summary>
                 <p data-modal-text-for="about">
                   We create new and better designs for companies that needs
@@ -171,25 +181,25 @@
                 </p>
               </details>
               <button class="link link--more" data-trigger-for="about">
-                more <span class="fas fa-chevron-right"></span>
+                READ MORE
               </button>
             </figcaption>
           </figure>
           <figure class="card card--info">
             <img
-              class="card__img"
-              src="https://images.unsplash.com/photo-1532622785990-d2c36a76f5a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+              class="img card__img"
+              src="assets/images/daniel-korpai-1286320-unsplash.jpg"
               alt="info card 2"
             />
             <figcaption class="details">
               <h4 class="card__head" data-modal-head-for="solutions">
                 Our Solutions
               </h4>
-              <details>
+              <details class="card__body">
                 <summary>
-                  We take advantage of modern software tooling to satisfy all
-                  your business needs, no middle-man.</summary
-                >
+                  Graphic design is our bandage, software is the medicine, and
+                  we're the doctors.
+                </summary>
                 <p data-modal-text-for="solutions">
                   We create posters, event cards, logos, business card, magazine
                   designs, newspaper, ﬂyers, website design. The mission is to
@@ -200,7 +210,7 @@
                 </p>
               </details>
               <button class="link link--more" data-trigger-for="solutions">
-                more <span class="fas fa-chevron-right"></span>
+                READ MORE
               </button>
             </figcaption>
           </figure>
@@ -215,20 +225,21 @@
               class="img service__img"
               src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
             />
-            <div class="center">
+            <div class="service__details">
               <h4 class="service__name" data-modal-head-for="branding">
                 Branding
               </h4>
+              <div data-modal-text-for="branding">
+                Leave an impression, let us help you or business stand out from
+                the pack.
+              </div>
               <a
                 href="#0"
                 class="link link--more service--more"
                 data-has-data="true"
                 data-trigger-for="branding"
-                >MORE</a
+                >SEE OFFERS</a
               >
-              <div data-modal-text-for="branding" hidden>
-                Let us help you realize your brand identity and messaging.
-              </div>
             </div>
           </figure>
           <figure class="service card service--active">
@@ -237,21 +248,21 @@
               src="assets/images/daniel-korpai-1286320-unsplash.jpg"
             />
             <!-- <div class="service__stripe"></div> -->
-            <div class="center">
+            <div class="service__details">
               <h4 class="service__name" data-modal-head-for="stationary">
-                Web Design
+                Development
               </h4>
+              <div data-modal-text-for="appDev">
+                Got an idea, or do you want to take advantage of the booming
+                online market, we're hire.
+              </div>
               <a
                 href="#0"
                 class="link link--more service--more"
                 data-has-data="true"
                 data-trigger-for="stationary"
-                >MORE</a
+                >SEE OFFERS</a
               >
-              <div data-modal-text-for="appDev" hidden>
-                World design application is our middlename. scroll and order
-                what you want.
-              </div>
             </div>
           </figure>
           <figure class="service card">
@@ -259,20 +270,21 @@
               class="img service__img"
               src="https://images.unsplash.com/photo-1542744173-b3cd6377db95?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"
             />
-            <div class="center">
+            <div class="service__details">
               <h4 class="service__name" data-modal-head-for="appDev">
                 Stationary
               </h4>
+              <div data-modal-text-for="stationary">
+                Event posters, custom office stationary you name it, we got your
+                back.
+              </div>
               <a
                 href="#0"
-                class="link link--more service--more"
+                class="link link--more service--more
                 data-has-data="true"
                 data-trigger-for="appDev"
-                >MORE</a
+                >SEE OFFERS</a
               >
-              <div data-modal-text-for="stationary" hidden>
-                From business function to weedings, we got you covered. see...
-              </div>
             </div>
           </figure>
         </div>
@@ -292,11 +304,11 @@
             />
             <figcaption class="member__details">
               <h3 class="member__name">Lutho Spambo</h3>
-              <span class="tag">CEO, FOUNDER</span>
+              <span class="tag">Founder & Graphic Designer</span>
               <p class="member__qoute">
-                I'm a graphic designer a reasoner color philosopher. Web
-                designer and developer. Favourite qoute "Design is intelligence
-                made visible"
+                “ I'm a graphic designer a reasoner color philosopher. Web
+                designer and developer. Favorite quote 'Design is intelligence
+                made visible'. ”
               </p>
             </figcaption>
           </figure>
@@ -307,11 +319,11 @@
             />
             <figcaption class="member__details">
               <h3 class="member__name">Simo Swssr</h3>
-              <span class="tag">UI/UX Designer</span>
+              <span class="tag">UX Designer & Developer</span>
               <p class="member__qoute">
-                Having the temperament of an introverted old man, I'm convinced
-                my keyboard and brain hate me, they've gone through a lot of
-                abuse.
+                “I'm a self proclaimed UX design and development ninja, I love
+                every bit of my job. Nothing gives me more joy than seeing your
+                ideas realized”
               </p>
             </figcaption>
           </figure>
@@ -323,7 +335,9 @@
       </section>
       <section class="container" id="contact">
         <h1 class="head-text">ENQUIRIES</h1>
-        <p class="subtext">Dot down your email and we'll get back to you!</p>
+        <p class="subtext">
+          Send through your questions, and we'll get back to you.
+        </p>
 
         <form class="form">
           <input
@@ -380,7 +394,8 @@
           rel="no-referrer"
           href="/legal.html/privacy"
           class="link footer__link"
-          ><strong>Designed By Swssr</strong></a>
+          ><strong>Designed By Swssr</strong></a
+        >
       </div>
       <div class="footer__group">
         <a
