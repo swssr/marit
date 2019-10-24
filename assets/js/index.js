@@ -240,7 +240,7 @@ navLinks.forEach(link =>
 );
 
 //Handle email form submit
-const form = document.querySelector("form");
+const [heroForm, form] = document.querySelectorAll("form");
 const emailInput = form.querySelector("#email");
 const modalEmailInput = document.querySelector("#modalEmail");
 
