@@ -114,8 +114,8 @@ const ServicesCollection = [
 ];
 //Foreach buttom with "learn more" or "show details" text show dialog/modal
 let data = null;
-const listEl = document.querySelector(".modal .wide-list");
-
+const wideLists = document.querySelectorAll(".wide-list");
+const [modalList, projectList] = wideLists;
 learnLinks.forEach((_trigger, index) => {
   _trigger.addEventListener("click", e => {
     const modHead = modalHeads[index].textContent;
@@ -124,9 +124,9 @@ learnLinks.forEach((_trigger, index) => {
 
     if (hasData || isForm) {
       data = ServicesCollection[index - 2];
-      resetModal();
-      listEl.style.display = "flex";
-      populateList(listEl, data);
+      modals.forEach(modal => resetModal(modal));
+      modalList.style.display = "flex";
+      populateList(modalList, data);
     } else {
       popup.classList.add("modal--small");
     }
@@ -144,33 +144,35 @@ let mouseDown = false;
 let startX;
 let scrollLeft;
 
-listEl.addEventListener("mousedown", e => {
-  e.preventDefault();
-  mouseDown = true;
-  listEl.classList.add("wide-list--dragged");
-  startX = e.pageX - listEl.offsetLeft;
-  scrollLeft = listEl.scrollLeft;
-});
-listEl.addEventListener("mouseup", () => {
-  mouseDown = false;
-  listEl.classList.remove("wide-list--dragged");
-});
-listEl.addEventListener("mouseleave", () => {
-  mouseDown = false;
-  listEl.classList.remove("wide-list--dragged");
-});
-listEl.addEventListener("mouseenter", () => {
-  mouseDown = false;
-  listEl.classList.remove("wide-list--dragged");
-});
-listEl.addEventListener("mousemove", e => {
-  e.preventDefault;
-  if (!mouseDown) return;
-  const x = e.pageX - listEl.offsetLeft;
-  // console.log({ startX, x });
-  const dist = (x - startX) * 0.98;
+wideLists.forEach(listEl => {
+  listEl.addEventListener("mousedown", e => {
+    e.preventDefault();
+    mouseDown = true;
+    listEl.classList.add("wide-list--dragged");
+    startX = e.pageX - listEl.offsetLeft;
+    scrollLeft = listEl.scrollLeft;
+  });
+  listEl.addEventListener("mouseup", () => {
+    mouseDown = false;
+    listEl.classList.remove("wide-list--dragged");
+  });
+  listEl.addEventListener("mouseleave", () => {
+    mouseDown = false;
+    listEl.classList.remove("wide-list--dragged");
+  });
+  listEl.addEventListener("mouseenter", () => {
+    mouseDown = false;
+    listEl.classList.remove("wide-list--dragged");
+  });
+  listEl.addEventListener("mousemove", e => {
+    e.preventDefault;
+    if (!mouseDown) return;
+    const x = e.pageX - listEl.offsetLeft;
+    // console.log({ startX, x });
+    const dist = (x - startX) * 0.98;
 
-  listEl.scrollLeft = scrollLeft - dist;
+    listEl.scrollLeft = scrollLeft - dist;
+  });
 });
 //
 function populateList(_listElement, _data) {
@@ -199,8 +201,12 @@ function populateList(_listElement, _data) {
       _listElement.appendChild(listItem);
     });
 }
-function resetModal() {
-  listEl.style.display = "none";
+
+function resetModal(modal, all = false) {
+  console.log(modalList);
+  modalList.style.display = "none";
+  // modal.querySelector("ul").style.display = "none";
+
   popup.classList.remove("modal--small");
   modalEnq.classList.remove("modal--large");
 }
@@ -210,8 +216,9 @@ modalClose.forEach(btn => {
 });
 
 function handleModalClose(_event) {
-  _event.currentTarget.closest("dialog").close();
-  resetModal();
+  const _modal = _event.currentTarget;
+  _modal.closest("dialog").close();
+  resetModal(_modal);
 }
 //card hover
 const switchList = (node, arr) => {
