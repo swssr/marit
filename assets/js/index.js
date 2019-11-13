@@ -203,7 +203,6 @@ function populateList(_listElement, _data) {
 }
 
 function resetModal(modal, all = false) {
-  console.log(modalList);
   modalList.style.display = "none";
   // modal.querySelector("ul").style.display = "none";
 
@@ -246,83 +245,102 @@ navLinks.forEach(link =>
   })
 );
 
-//Handle email form submit
+/**
+ * REGION: Handle enquiry email submission
+ *
+ *
+ *
+ * */
+
 const [heroForm, form] = document.querySelectorAll("form");
 const emailInput = form.querySelector("#email");
-const modalEmailInput = document.querySelector("#modalEmail");
 
-const formData = new FormData();
+//My email form state
+const getEmail = () => localStorage.getItem("sender");
+const setEmail = _sender => localStorage.setItem("sender", _sender);
 
-const bindFormData = ({ email, body }) => {
-  formData.append("email", email);
-  formData.append("body", body);
-  enqModal.showModal();
+const getText = () => localStorage.getItem("text");
+const setText = _text => localStorage.setItem("text", _text);
+
+const bindEnquiry = (_sender, _text) => {
+  setEmail(_sender);
+  setText(_text);
+  /**
+   * Extras: should probably move this elsewhere
+   * If enquiry modal is closed open it.
+   */
+  !enqModal.open && enqModal.showModal();
 };
 
-const submitForm = _formData => {
-  console.log(_formData.getAll("email"));
-
-  fetch("someapi.com/enquiry", {
-    body: _formData,
-    method: "POST"
-  })
-    .then(console.log)
-    .catch(console.log);
-};
 //Enquiry modal popup
 const enqModal = document.querySelector(".modal--enquiry");
-const handleFormSubmit = e => {
+
+const handleInitialSubmit = e => {
+  //Prevent reload
   e.preventDefault();
-
-  const email = emailInput.value.trim();
   //Email validation
-  const isValidEmail = isEmail(email);
-
+  const sender = emailInput.value.trim();
+  const isValidEmail = isEmail(sender);
+  /**
+   * Validate user email, bind email to state if vaild, signal error if invaild
+   */
+  isValidEmail ? bindEnquiry(sender, "initial test message") : hasError(form);
+  /**
+   * Close modal afterward
+   */
   popup.close();
-
-  if (isValidEmail) {
-    const _data = {
-      email,
-      body: ""
-    };
-    bindFormData(_data);
-  } else {
-    //Adds error class to form
-    hasError(form);
-  }
 };
-form.addEventListener("submit", handleFormSubmit);
+form.addEventListener("submit", handleInitialSubmit);
 
 const btnShowEnq = document.querySelector("#showEnq");
 const enqForm = document.querySelector(".enquiry__form");
 const btnSubmitEnq = document.querySelector("#enqSubmit");
 const btnJustSubmit = document.querySelector("#btnJustSubmit");
-const enquiryBody = enqForm.querySelector("#enquiryBody").value;
+
+let enquiryBody = enqForm.querySelector("#enquiryBody");
 //Show enquiry form
 function showEnquiryForm() {
   enqModal.classList.add("modal--large");
   enqForm.classList.add("show");
-  enqForm.querySelector("#modalEmail").value = formData.get("email");
-  enquiryBody = formData.get("body") || "";
+  enqForm.querySelector("#modalEmail").value = getEmail();
+  enquiryBody.value = getText();
 }
 
 btnShowEnq.addEventListener("click", showEnquiryForm);
 
-//Submit enquiry to server
-const submitEnquiry = _formData => submitForm(_formData);
-
-//TODO:implement rate limiting
-const handleSubmit = (_formData = formData) => {
-  enqForm.classList.remove("show");
-  btnJustSubmit.closest("dialog").close();
-  submitEnquiry(_formData);
+/**
+ * This submit the enquiry to a email server
+ * */
+const submitEnquiry = async body => {
+  const url = "http://localhost:7700/api/messages";
+  const headers = { "Content-Type": "application/json" };
+  const options = { body: JSON.stringify(body), method: "POST", headers };
+  await fetch(url, options)
+    .then(res => console.log({ res }))
+    .catch(console.log);
 };
 
-btnJustSubmit.addEventListener("click", () => {
-  bindFormData({ body: enquiryBody });
+//TODO:implement rate limiting on server
+const handleSubmit = (sender = getEmail(), text = getText()) => {
+  const body = {
+    sender,
+    text
+  };
+
+  submitEnquiry(body);
+  enqForm.classList.remove("show");
+  btnJustSubmit.closest("dialog").close();
+};
+
+btnJustSubmit.addEventListener("click", handleSubmit);
+
+const enquiryEmail = document.querySelector("#modalEmail");
+
+btnSubmitEnq.addEventListener("click", () => {
+  bindEnquiry(enquiryEmail.value, enquiryBody.value);
   handleSubmit();
 });
-btnSubmitEnq.addEventListener("click", handleSubmit);
+
 //Utility functions
 function isEmail(_phrase) {
   const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
