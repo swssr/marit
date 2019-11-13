@@ -78,7 +78,7 @@ btnShowEnq.addEventListener("click", showEnquiryForm);
  * This submit the enquiry to a email server
  * */
 async function submitEnquiry(body) {
-  const url = "http://localhost:7700/api/messages";
+  const url = "https://filr-server.appspot.com/api/messages";
   const headers = { "Content-Type": "application/json" };
   const options = { body: JSON.stringify(body), method: "POST", headers };
   console.log("Submitted", body);
