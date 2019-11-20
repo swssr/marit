@@ -674,8 +674,9 @@ h4,
   opacity: 0.08 !important;
 }
 .hero__head {
-  font-family: "Poppins black";
+  font-family: "Poppins";
   font-size: 38px;
+  font-weight: 900;
   position: relative;
   margin-bottom: 0.5rem;
 }
