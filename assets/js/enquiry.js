@@ -74,19 +74,27 @@ function showEnquiryForm() {
 
 btnShowEnq.addEventListener("click", showEnquiryForm);
 
+const loader = document.querySelector(".loader");
+
+function showLoader() {}
+
 function showToast(msg, error = false) {
+  loader.style.display = "none";
+
   popup.classList.add("modal--small", "toasty");
   const _msg = !error
     ? "Your enquiry has been sent, we'll get back to you soon!"
-    : `Ooops! something went wrong: ${msg}`;
-  console.log(msg);
+    : `Something is not right! <br/>
+      <strong>${msg}</strong>`;
+
   modalHead.textContent = !error ? "Good News!" : "Sorry";
   subText.textContent = "";
-  modalBody.textContent = _msg;
+  modalBody.innerHTML = _msg;
   typeof popup.showModal === "function"
     ? popup.showModal()
     : alert("Dialog not supported");
 }
+
 /**
  * This submit the enquiry to a email server
  * */
@@ -94,9 +102,13 @@ async function submitEnquiry(body) {
   const url = "https://filr-server.appspot.com/api/messages";
   const headers = { "Content-Type": "application/json" };
   const options = { body: JSON.stringify(body), method: "POST", headers };
-  console.log("Submitted", body);
+
+  loader.style.display = "block";
+
   await fetch(url, options)
-    .then(showToast)
+    .then(res => {
+      showToast(res);
+    })
     .catch(res => showToast(res, true));
 }
 
