@@ -71,12 +71,15 @@ const ServicesCollection = [
       },
       {
         label: "New Endeavor",
-        packages: [""],
+        packages: [
+          "UX & UI Design - Pretty with purpose.",
+          "Development - From concept to fruition"
+        ],
         note: `Think of us as team of Genies; We'll build everything to your specification. A robust, scalable and beautiful application is the only thing we can produce, it's a shame really.`
       },
       {
         label: "e-Commerce",
-        packages: [""],
+        packages: ["Webstore", "landing Page", "Dashboard"],
         note: `This deserves it's own category. Shopify, WordPress, ASP.NET hosted application name your platform we make it happen.`
       }
     ]
@@ -87,17 +90,17 @@ const ServicesCollection = [
     items: [
       {
         label: "Pack 1",
-        packages: [""],
+        packages: [],
         note: ``
       },
       {
         label: "Pack 2",
-        packages: [""],
+        packages: [],
         note: ``
       },
       {
         label: "Pack 3",
-        packages: [""],
+        packages: [],
         note: ``
       }
     ]
@@ -179,14 +182,14 @@ function cardSpawn(data, parent) {
   listItem.className = "list__item";
 
   const itemName = document.createElement("h3");
-  itemName.classList.add("member__name");
+  itemName.classList.add("item__name");
 
   itemName.textContent = data.label;
   listItem.appendChild(itemName);
 
   const package = document.createElement("ul");
   const packHead = document.createElement("p");
-  packHead.textContent = "Pack includes-";
+  data.packages && (packHead.textContent = "Pack includes-");
   package.appendChild(packHead);
 
   data.packages &&
@@ -204,7 +207,7 @@ function cardSpawn(data, parent) {
   itemActions.className = "card__actions";
 
   const itemBtn = document.createElement("button");
-  itemBtn.className = "btn service--more with-checkbox";
+  itemBtn.className = "btn with-checkbox";
   itemBtn.textContent = "Order";
 
   const btnIcon = document.createElement("span");
@@ -220,7 +223,7 @@ function cardSpawn(data, parent) {
 
 //Used event propagation to target btn.
 modalList.addEventListener("click", ({ target }) => {
-  const isBtn = [...target.classList].some(x => x === "btn");
+  const isBtn = [...target.classList].some(x => x === "btn" || "btn__icon");
   if (isBtn) {
     const btn = target;
     const parentCard = target.closest("li");
