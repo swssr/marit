@@ -237,12 +237,13 @@ a:hover {
 
 .with-checkbox span {
   display: inline-block;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+  width: 30px;
+  height: 30px;
   margin-left: 1.2rem;
   background-image: url("../images/icons/SVG/chk--not.svg");
-  background-size: cover;
+  background-size: 20px;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .checked .with-checkbox span {
   background-image: url("../images/icons/SVG/chk--checked.svg");
@@ -1184,8 +1185,8 @@ address {
   --card-width: calc((var(--w) - var(--gap)) / 3);
   position: relative;
   width: var(--card-width);
-  height: 90%;
   min-height: 35vh;
+  height: 100%;
   margin-right: var(--gap);
   flex-shrink: 0;
   display: flex;
@@ -1194,6 +1195,9 @@ address {
   cursor: pointer;
   padding: 2rem;
   transform: scale(0.98);
+}
+.modal .wide-list .list__item {
+  height: 90%;
 }
 
 .wide-list .list__item:last-child {
