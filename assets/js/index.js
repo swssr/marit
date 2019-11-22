@@ -17,9 +17,12 @@ const navIO = new IntersectionObserver(toggleNav, navOption);
 navIO.observe(header);
 
 //Modal toggler
-const learnLinks = document.querySelectorAll("[data-trigger-for]");
-const modalTexts = document.querySelectorAll("[data-modal-text-for]");
-const modalHeads = document.querySelectorAll("[data-modal-head-for]");
+const readMoreBtns = document.querySelectorAll(".card--info .link--more");
+const details = document.querySelectorAll(".card--info details summary");
+
+readMoreBtns.forEach((btn, index) => {
+  btn.addEventListener("click", () => details[index].click());
+});
 //
 const modals = document.querySelectorAll(".modal");
 const modalHead = document.querySelector(".modal__head");
@@ -31,95 +34,101 @@ const [popup, modalEnq] = modals;
 dialogPolyfill.registerDialog(modalEnq);
 dialogPolyfill.registerDialog(popup);
 
-//Emaulates a database
-const ServicesCollection = [
-  {
-    name: "Branding",
-    subtext: "Let us help you realize your brand identity and messaging.",
-    items: [
-      {
-        label: "Consultation",
-        packages: [""],
-        note: ``
-      },
-      {
-        label: "Rebrand",
-        packages: [""],
-        note: ``
-      },
-      {
-        label: "Contractual",
-        packages: [""],
-        note: ``
-      }
-    ]
-  },
-  {
-    name: "Development",
-    subtext: "We design and build for the web.",
-    items: [
-      {
-        label: "Website Redesign",
-        packages: [
-          "UX Design & Market research",
-          "UI Design - Make it look pretty."
-        ],
-        note: `You have a website, you know 
+/**
+ * Emulates a database or State.
+ * I could've saved a lot of time by using react. I know!
+ * */
+const State = {
+  services: [
+    {
+      name: "Branding",
+      subtext: "Let us help you realize your brand identity and messaging.",
+      items: [
+        {
+          label: "Consultation",
+          packages: [""],
+          note: ``
+        },
+        {
+          label: "Rebrand",
+          packages: [""],
+          note: ``
+        },
+        {
+          label: "Contractual",
+          packages: [""],
+          note: ``
+        }
+      ]
+    },
+    {
+      name: "Development",
+      subtext: "We design and build for the web.",
+      items: [
+        {
+          label: "Website Redesign",
+          packages: [
+            "UX Design & Market research",
+            "UI Design - Make it look pretty."
+          ],
+          note: `You have a website, you know 
               something's not right, but just cannot point 
               it out. We like thing of ourselves as experts 
               at nitpicking. Let us help.`
-      },
-      {
-        label: "New Endeavor",
-        packages: [
-          "UX & UI Design - Pretty with purpose.",
-          "Development - From concept to fruition"
-        ],
-        note: `Think of us as team of Genies; We'll build everything to your specification. A robust, scalable and beautiful application is the only thing we can produce, it's a shame really.`
-      },
-      {
-        label: "e-Commerce",
-        packages: ["Webstore", "landing Page", "Dashboard"],
-        note: `This deserves it's own category. Shopify, WordPress, ASP.NET hosted application name your platform we make it happen.`
-      }
-    ]
-  },
-  {
-    name: "Stationary",
-    subtext: "From business function to weedings, we got you covered. see...",
-    items: [
-      {
-        label: "Pack 1",
-        packages: [],
-        note: ``
-      },
-      {
-        label: "Pack 2",
-        packages: [],
-        note: ``
-      },
-      {
-        label: "Pack 3",
-        packages: [],
-        note: ``
-      }
-    ]
-  }
-];
+        },
+        {
+          label: "New Endeavor",
+          packages: [
+            "UX & UI Design - Pretty with purpose.",
+            "Development - From concept to fruition"
+          ],
+          note: `Think of us as team of Genies; We'll build everything to your specification. A robust, scalable and beautiful application is the only thing we can produce, it's a shame really.`
+        },
+        {
+          label: "e-Commerce",
+          packages: ["Webstore", "landing Page", "Dashboard"],
+          note: `This deserves it's own category. Shopify, WordPress, ASP.NET hosted application name your platform we make it happen.`
+        }
+      ]
+    },
+    {
+      name: "Stationary",
+      subtext: "Branded useful stuff, we got you.",
+      items: [
+        {
+          label: "Merch",
+          packages: ["Shirts, Hoodies", "Phone cases.", "Say it."],
+          note: `See branded merchendise.`
+        },
+        {
+          label: "Office",
+          packages: ["Writting stationary.", "Calenders"],
+          note: `Brand your office supplies. Everyone one likes this one.`
+        },
+        {
+          label: "Event Supplies",
+          packages: ["Posters", "Invitaions", "Other cool stuff"],
+          note: `You've probably been planning this for a while now, we provide the above and more tastefully.`
+        }
+      ]
+    }
+  ]
+};
 //Foreach buttom with "learn more" or "show details" text show dialog/modal
 let data = null;
 const wideLists = document.querySelectorAll(".wide-list");
 const [modalList, projectList] = wideLists;
 
 const subText = document.querySelector(".modal .subtext");
-learnLinks.forEach((_trigger, index) => {
-  _trigger.addEventListener("click", e => {
-    const modHead = modalHeads[index].textContent;
-    //
-    const { hasData, isForm } = e.currentTarget.dataset;
+const serviceTriggers = document.querySelectorAll(".service .link--more");
 
-    if (hasData || isForm) {
-      data = ServicesCollection[index - 2];
+serviceTriggers.forEach((_trigger, index) => {
+  _trigger.addEventListener("click", e => {
+    //
+    const { isForm } = e.currentTarget.dataset;
+    data = State.services[index];
+
+    if (data || isForm) {
       modals.forEach(modal => resetModal(modal));
       modalList.style.display = "flex";
       populateList(modalList, data);
