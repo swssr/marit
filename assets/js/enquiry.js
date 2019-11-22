@@ -80,7 +80,7 @@ function showToast(msg, error = false) {
     ? "Your enquiry has been sent, we'll get back to you soon!"
     : `Ooops! something went wrong: ${msg}`;
   console.log(msg);
-  modalHead.textContent = "Good News!";
+  modalHead.textContent = !error ? "Good News!" : "Sorry";
   subText.textContent = "";
   modalBody.textContent = _msg;
   typeof popup.showModal === "function"
