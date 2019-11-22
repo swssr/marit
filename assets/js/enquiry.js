@@ -74,6 +74,19 @@ function showEnquiryForm() {
 
 btnShowEnq.addEventListener("click", showEnquiryForm);
 
+function showToast(msg, error = false) {
+  popup.classList.add("modal--small", "toasty");
+  const _msg = !error
+    ? "Your enquiry has been sent, we'll get back to you soon!"
+    : `Ooops! something went wrong: ${msg}`;
+  console.log(msg);
+  modalHead.textContent = "Good News!";
+  subText.textContent = "";
+  modalBody.textContent = _msg;
+  typeof popup.showModal === "function"
+    ? popup.showModal()
+    : alert("Dialog not supported");
+}
 /**
  * This submit the enquiry to a email server
  * */
@@ -83,8 +96,8 @@ async function submitEnquiry(body) {
   const options = { body: JSON.stringify(body), method: "POST", headers };
   console.log("Submitted", body);
   await fetch(url, options)
-    .then(res => console.log({ res }))
-    .catch(console.log);
+    .then(showToast)
+    .catch(res => showToast(res, true));
 }
 
 //TODO:implement rate limiting on server
