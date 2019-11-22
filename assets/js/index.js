@@ -200,6 +200,7 @@ function cardSpawn(data, parent) {
     });
   listItem.appendChild(package);
   const packNote = document.createElement("p");
+  packNote.className = "note";
   packNote.textContent = data.note;
   listItem.appendChild(packNote);
 
