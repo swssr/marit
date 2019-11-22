@@ -35,79 +35,70 @@ dialogPolyfill.registerDialog(popup);
 const ServicesCollection = [
   {
     name: "Branding",
-    preface: "Let us help you realize your brand identity and messaging.",
+    subtext: "Let us help you realize your brand identity and messaging.",
     items: [
       {
-        img:
-          "https://images.unsplash.com/photo-1561070791-36c11767b26a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
-        label: "Logo"
+        label: "Consultation",
+        packages: [""],
+        note: ``
       },
       {
-        img:
-          "https://images.unsplash.com/photo-1561070791-36c11767b26a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
-        label: "Business Card"
+        label: "Rebrand",
+        packages: [""],
+        note: ``
       },
       {
-        img:
-          "https://images.unsplash.com/photo-1561070791-36c11767b26a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
-        label: "Posters, Banners"
-      },
-      {
-        img:
-          "https://images.unsplash.com/photo-1561070791-36c11767b26a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80",
-        label: "letterhead"
+        label: "Contractual",
+        packages: [""],
+        note: ``
       }
     ]
   },
   {
-    name: "Web development",
-    preface: "World class web design is our middlename. scroll and order",
+    name: "Development",
+    subtext: "We design and build for the web.",
     items: [
       {
-        img:
-          "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80",
-        label: "Single page website"
+        label: "Website Redesign",
+        packages: [
+          "UX Design & Market research",
+          "UI Design - Make it look pretty."
+        ],
+        note: `You have a website, you know 
+              something's not right, but just cannot point 
+              it out. We like thing of ourselves as experts 
+              at nitpicking. Let us help.`
       },
       {
-        img:
-          "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80",
-        label: "Three page website"
+        label: "New Endeavor",
+        packages: [""],
+        note: `Think of us as team of Genies; We'll build everything to your specification. A robust, scalable and beautiful application is the only thing we can produce, it's a shame really.`
       },
       {
-        img:
-          "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80",
-        label: "Business Process"
+        label: "e-Commerce",
+        packages: [""],
+        note: `This deserves it's own category. Shopify, WordPress, ASP.NET hosted application name your platform we make it happen.`
       }
     ]
   },
   {
     name: "Stationary",
-    preface: "From business function to weedings, we got you covered. see...",
+    subtext: "From business function to weedings, we got you covered. see...",
     items: [
       {
-        img:
-          "https://res.cloudinary.com/swssr/image/upload/v1567471226/swssr/merit/tlf7duzdismorkb9swaz.png",
-        label: "Pack 1"
+        label: "Pack 1",
+        packages: [""],
+        note: ``
       },
       {
-        img:
-          "https://res.cloudinary.com/swssr/image/upload/v1567471226/swssr/merit/tlf7duzdismorkb9swaz.png",
-        label: "Pack 2"
+        label: "Pack 2",
+        packages: [""],
+        note: ``
       },
       {
-        img:
-          "https://res.cloudinary.com/swssr/image/upload/v1567471226/swssr/merit/tlf7duzdismorkb9swaz.png",
-        label: "Pack 3"
-      },
-      {
-        img:
-          "https://res.cloudinary.com/swssr/image/upload/v1567471226/swssr/merit/tlf7duzdismorkb9swaz.png",
-        label: "Pack 4"
-      },
-      {
-        img:
-          "https://res.cloudinary.com/swssr/image/upload/v1567471226/swssr/merit/tlf7duzdismorkb9swaz.png",
-        label: "Pack 5"
+        label: "Pack 3",
+        packages: [""],
+        note: ``
       }
     ]
   }
@@ -116,6 +107,8 @@ const ServicesCollection = [
 let data = null;
 const wideLists = document.querySelectorAll(".wide-list");
 const [modalList, projectList] = wideLists;
+
+const subText = document.querySelector(".modal .subtext");
 learnLinks.forEach((_trigger, index) => {
   _trigger.addEventListener("click", e => {
     const modHead = modalHeads[index].textContent;
@@ -132,7 +125,8 @@ learnLinks.forEach((_trigger, index) => {
     }
     //
     modalHead.textContent = data ? data.name : modHead;
-    modalBody.textContent = data ? data.preface : modalTexts[index].textContent;
+    subText.textContent = data && data.subtext ? data.subtext : "";
+    modalBody.textContent = !data ? modalTexts[index].textContent : "";
     typeof popup.showModal === "function"
       ? popup.showModal()
       : alert("Dialog not supported");
@@ -177,30 +171,63 @@ wideLists.forEach(listEl => {
 //
 function populateList(_listElement, _data) {
   _listElement.innerHTML = "";
-  data &&
-    data.items &&
-    _data.items.forEach(x => {
-      const listItem = document.createElement("li");
-      listItem.className = "list__item card card--product";
-      const itemImg = document.createElement("img");
-      itemImg.className = "card__img";
-      itemImg.src = x.img;
-      listItem.appendChild(itemImg);
-      const itemName = document.createElement("h3");
-      itemName.classList.add("member__name");
-      itemName.textContent = x.label;
-      listItem.appendChild(itemName);
-      const itemList = document.createElement("ul");
-      const itemActions = document.createElement("div");
-      itemActions.className = "card__actions";
-      const itemBtn = document.createElement("button");
-      itemBtn.className = "btn btn--primary card__btn";
-      itemBtn.textContent = "Order";
-      itemActions.appendChild(itemBtn);
-      listItem.appendChild(itemActions);
-      _listElement.appendChild(listItem);
-    });
+  data && data.items && _data.items.forEach(x => cardSpawn(x, _listElement));
 }
+
+function cardSpawn(data, parent) {
+  const listItem = document.createElement("li");
+  listItem.className = "list__item";
+
+  const itemName = document.createElement("h3");
+  itemName.classList.add("member__name");
+
+  itemName.textContent = data.label;
+  listItem.appendChild(itemName);
+
+  const package = document.createElement("ul");
+  const packHead = document.createElement("p");
+  packHead.textContent = "Pack includes-";
+  package.appendChild(packHead);
+
+  data.packages &&
+    data.packages.forEach(_item => {
+      const packItem = document.createElement("li");
+      packItem.textContent = _item;
+      package.appendChild(packItem);
+    });
+  listItem.appendChild(package);
+  const packNote = document.createElement("p");
+  packNote.textContent = data.note;
+  listItem.appendChild(packNote);
+
+  const itemActions = document.createElement("div");
+  itemActions.className = "card__actions";
+
+  const itemBtn = document.createElement("button");
+  itemBtn.className = "btn service--more with-checkbox";
+  itemBtn.textContent = "Order";
+
+  const btnIcon = document.createElement("span");
+  btnIcon.className = "btn__icon";
+  itemBtn.appendChild(btnIcon);
+
+  itemActions.appendChild(itemBtn);
+  listItem.appendChild(itemActions);
+
+  ///
+  parent.appendChild(listItem);
+}
+
+//Used event propagation to target btn.
+modalList.addEventListener("click", ({ target }) => {
+  const isBtn = [...target.classList].some(x => x === "btn");
+  if (isBtn) {
+    const btn = target;
+    const parentCard = target.closest("li");
+
+    parentCard.classList.toggle("checked");
+  } else return;
+});
 
 function resetModal(modal, all = false) {
   modalList.style.display = "none";
