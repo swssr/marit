@@ -1332,7 +1332,7 @@ address {
 }
 .project__list {
   width: calc(100vw + var(--sm-pad));
-  height: 90% !important;
+  height: 50vh;
   overflow: scroll;
 }
 
