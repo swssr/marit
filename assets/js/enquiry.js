@@ -76,8 +76,6 @@ btnShowEnq.addEventListener("click", showEnquiryForm);
 
 const loader = document.querySelector(".loader");
 
-function showLoader() {}
-
 function showToast(msg, error = false) {
   loader.style.display = "none";
 
@@ -91,10 +89,9 @@ function showToast(msg, error = false) {
   subText.textContent = "";
   modalBody.innerHTML = _msg;
   typeof popup.showModal === "function"
-    ? popup.showModal()
+    ? !popup.open && popup.showModal()
     : alert("Dialog not supported");
 }
-
 /**
  * This submit the enquiry to a email server
  * */
