@@ -127,9 +127,9 @@ serviceTriggers.forEach((_trigger, index) => {
     //
     const { isForm } = e.currentTarget.dataset;
     data = State.services[index];
+    modals.forEach(modal => resetModal(modal));
 
     if (data || isForm) {
-      modals.forEach(modal => resetModal(modal));
       modalList.style.display = "flex";
       populateList(modalList, data);
     } else {

@@ -35,7 +35,8 @@
     <!-- START NAV -->
     <nav class="nav--top">
       <img src="assets/images/icons/Logo.svg" class="logo" alt="logo" />
-      <input type="checkbox" class="menu--chk" />
+      <input id="menu" type="checkbox" class="menu--chk" />
+      <label for="menu" class="lb-menu"></label>
       <div class="nav__links">
         <a href="#vision" class="link">Vision</a>
         <a href="#services" class="link">Services</a>
@@ -81,7 +82,8 @@
         <fieldset class="form__field">
           <label class="label" for="enquiry">Your email</label>
           <input
-            type="text"
+            type="email"
+            inputmode="email"
             id="modalEmail"
             placeholder="human@example.com"
             class="input modal__input"
@@ -120,13 +122,14 @@
           Bringing Ideas to fruition using design & logic
         </h1>
         <p class="hero__body">
-          Merit branding is an awesome, fresh, futurre facing graphic and
-          interaction design company.
+          Merit branding is a fresh, future facing graphic and interaction
+          design company.
         </p>
         <form id="hero__form">
           <input
             placeholder="YOUR EMAIL ADDRESS"
-            type="text"
+            type="email"
+            inputmode="email"
             name="hero__email"
             id="hero__email"
             class="input"
@@ -213,7 +216,7 @@
         <h1 class="head-text">WHAT WE DO</h1>
         <p class="subtext">we know things too, we're fancy!</p>
         <div class="service-list">
-          <figure class="service card">
+          <figure class="service card service--active">
             <img
               class="img service__img"
               src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
@@ -229,7 +232,7 @@
               <a href="#0" class="link link--more service--more">SEE OFFERS</a>
             </div>
           </figure>
-          <figure class="service card service--active">
+          <figure class="service card">
             <img
               class="img service__img"
               src="assets/images/daniel-korpai-1286320-unsplash.jpg"
@@ -335,10 +338,10 @@
               <h4>Lutho Spambo</h4>
               <span class="tag">Founder & Graphic Designer</span>
               <p class="member__qoute">
-                “ I'm a graphic designer a reasoner color philosopher. Web
-                designer and developer. Favorite quote 'Design is intelligence
-                made visible'. ”
+                “ I'm a reasoner color philosopher. Web designer and developer.
+                Favorite quote 'Design is intelligence made visible'. ”
               </p>
+              <button class="link link--more">read more</button>
             </figcaption>
           </figure>
           <figure class="member">
@@ -354,6 +357,7 @@
                 every bit of my job. Nothing gives me more joy than seeing your
                 ideas realized”
               </p>
+              <button class="link link--more">read more</button>
             </figcaption>
           </figure>
         </div>
@@ -413,7 +417,8 @@
             class="input input--wide form__input"
             placeholder="HUMAN@EXAMPLE.COM"
             inputmode="email"
-            type="text"
+            type="email"
+            inputmode="email"
             name="email"
           />
           <input

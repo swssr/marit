@@ -34,7 +34,12 @@
   transition: 400ms all ease-out;
   /* outline: 1px solid green; */
 }
-
+:focus {
+  outline: none;
+}
+:focus-within {
+  border: none;
+}
 html {
   width: 100%;
   font-family: "Poppins";
@@ -227,8 +232,8 @@ a:hover {
 .link {
   text-transform: uppercase;
 }
-
-.menu--chk {
+.menu--chk,
+.lb-menu {
   display: none;
 }
 .with-checkbox {
@@ -583,10 +588,9 @@ h4,
 
 .member__details {
   position: relative;
-  color: rgba(255, 255, 255, 0.86);
   font-weight: 300;
   width: 60%;
-  height: 7rem;
+  height: 10rem;
   z-index: 1;
 }
 .member__details h4 {
@@ -596,7 +600,7 @@ h4,
 }
 
 .member:nth-of-type(even) .member__details {
-  margin-left: 2rem;
+  margin-left: 4rem;
 }
 
 .member__details::before {
@@ -1023,7 +1027,7 @@ address {
   width: var(--w);
   height: var(--h);
   margin-top: calc(100vh - var(--mn-pad));
-  margin-left: calc(100vw - var(--mn-pad));
+  margin-left: calc(50vw - var(--w) / 2);
   border-radius: 50%;
   border: 4px solid var(--navy);
   border-style: dashed;
@@ -1144,11 +1148,13 @@ address {
 }
 
 .wide-list {
-  --gap: 2.5rem;
+  --gap: 2rem;
+  /* Card width is container width minus the gap between it's siblings all divided by number of cards  */
+  --card-width: calc((var(--w) - var(--gap)) / 3);
+
   position: relative;
-  width: calc(var(--w) + var(--sm-pad));
+  width: 100vw;
   flex-basis: 100%;
-  margin-left: calc(var(--sm-pad) * -1);
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
@@ -1156,8 +1162,7 @@ address {
   overflow: visible;
   overflow-x: scroll;
   /* overflow-y: auto; */
-  padding-left: calc(var(--sm-pad));
-  margin-left: calc(var(--sm-pad) * -1);
+  margin-left: calc(var(--mn-pad) * -1);
   list-style: none;
 }
 
@@ -1230,8 +1235,6 @@ address {
   cursor: none;
 }
 .wide-list .list__item {
-  /* Card width is container width minus the gap between it's siblings all divided by number of cards  */
-  --card-width: calc((var(--w) - var(--gap)) / 3);
   position: relative;
   width: var(--card-width);
   min-height: 35vh;
@@ -1249,6 +1252,9 @@ address {
   height: 90%;
 }
 
+.wide-list .list__item:first-child {
+  margin-left: var(--mn-pad);
+}
 .wide-list .list__item:last-child {
   margin-right: var(--card-width);
 }
@@ -1330,11 +1336,6 @@ address {
 #btnRequestProdQoute {
   display: none;
 }
-.project__list {
-  width: calc(100vw + var(--sm-pad));
-  height: 50vh;
-  overflow: scroll;
-}
 
 .project__list::-webkit-scrollbar {
   height: 8px;
@@ -1351,7 +1352,7 @@ address {
 }
 
 .project {
-  width: 28vw !important;
+  min-width: 28vw;
   background-color: #fff !important;
   display: flex;
 
@@ -1437,6 +1438,8 @@ address {
 
   .logo {
     position: relative;
+    height: 100px;
+    width: 150px;
     z-index: 1;
   }
 
@@ -1452,20 +1455,21 @@ address {
     z-index: -1;
   }
 
-  .menu--chk {
+  .lb-menu {
     position: absolute;
     display: block;
     top: var(--btn-bottom);
-    width: 0;
-    height: 0;
-    background: var(--light);
+    width: 1.5rem;
+    height: 1.5rem;
+    background: transparent;
     outline: none;
     border: none;
-    appearance: none;
+    background-image: url(../images/icons/icons8_menu_filled_100px.png);
+    background-size: cover;
+    background-repeat: no-repeat;
     right: var(--mn-pad);
     z-index: 10;
   }
-
   .nav__links {
     position: absolute;
     width: 100vw;
@@ -1486,67 +1490,69 @@ address {
     transform-origin: right;
   }
 
-  .menu--chk::before {
-    content: "";
-    position: absolute;
-    top: -1rem;
-    left: 0;
-    width: 18px;
-    height: 18px;
-    transform: translateX(-2rem);
-    background-image: url(https://img.icons8.com/ios-filled/50/000000/menu.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
-  .menu--chk:checked::before {
-    background: url(https://img.icons8.com/material-sharp/24/000000/delete-sign.png);
-  }
-
   .nav__links .link {
     display: none;
   }
 
-  .menu--chk:checked + .nav__links {
+  .menu--chk:checked ~ .lb-menu {
+    background-image: url(../images/icons/icons8_delete_sign_60px.png);
+  }
+
+  .menu--chk:checked ~ .nav__links {
     opacity: 1;
     top: 0;
     transform: scaleY(1) !important;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
-
-  .menu--chk:checked + .nav__links .link {
-    display: flex;
+  .link--primary {
+    padding: 0.5rem 0;
   }
 
+  .menu--chk:checked ~ .nav__links .link {
+    display: flex;
+  }
+  .stripes {
+    opacity: 0.1;
+  }
+  .hero {
+    width: 100%;
+  }
+  .service {
+    height: unset;
+  }
+  .main * {
+    clip-path: none !important;
+  }
   .card__head {
-    font-size: 1.4rem;
+    font-size: 16px;
   }
 
   .details {
-    width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
   }
-
-  details {
-    background-color: transparent !important;
-    display: none !important;
+  .card--info:nth-child(2) .details {
+    padding-left: 2rem;
   }
-
+  .card__body {
+    padding: 0;
+    margin: 0;
+  }
   .modal {
     width: 100vw;
     height: 100vh;
   }
 
-  .wide-list .list__item {
-    width: calc(var(--card-width) * 3.5) !important;
+  .wide-list {
+    --card-width: calc((var(--w) - var(--gap)) / 1.3);
   }
-
+  .wide-list .list__item {
+    width: var(--card-width);
+  }
   .container--short {
     height: 100vh;
+  }
+  .card--info {
+    height: 100%;
   }
 
   .card--info:first-of-type {
@@ -1602,7 +1608,10 @@ address {
   }
 
   .service--more {
-    width: 100%;
+    filter: grayscale(1);
+  }
+  .service--active .service--more {
+    filter: grayscale(0);
   }
 
   #team {
@@ -1626,12 +1635,11 @@ address {
   }
 
   .member:nth-of-type(even) {
-    margin-left: -2rem;
+    margin-left: -4rem;
   }
 
   .member__details {
     width: 100%;
-    padding-bottom: 2rem;
   }
 
   .member__details::before {
@@ -1640,20 +1648,45 @@ address {
     height: 400%;
     width: 300%;
   }
-
-  footer {
-    font-size: 12px;
-    grid-gap: 1rem !important;
-    place-content: start;
+  #map {
+    height: 80vh;
+  }
+  .contact-card {
+    height: 80vh;
+    grid-template: 1fr 1fr / 1fr;
+  }
+  .knife {
+    justify-content: center;
+  }
+  .knife:first-child {
     z-index: 0;
+  }
+  .knife:nth-child(even) {
+    padding: 0;
+  }
+  .knife__bg {
+    width: 100% !important;
+  }
+  .knife:nth-of-type(even) .knife__bg {
+    width: 0;
+    opacity: 0;
+  }
+  .not-wide {
+    width: 100%;
+  }
+  footer {
+    font-size: 10px;
+    z-index: 0;
+    grid-gap: 8px;
+    justify-content: center;
+    grid-auto-flow: row;
+  }
+  .footer__group:not(:last-child) {
+    display: none;
   }
 
   .footer__head {
     width: 100%;
-  }
-
-  .footer__group:first-child {
-    display: none;
   }
 }
 
