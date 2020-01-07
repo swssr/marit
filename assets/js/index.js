@@ -164,6 +164,8 @@ serviceTriggers.forEach((_trigger, index) => {
     data = State.services[index];
     resetModal(true);
 
+    const _cards = e.target;
+
     if (data || isForm) {
       modalList.style.display = "flex";
       populateList(modalList, data);
@@ -227,6 +229,11 @@ function populateList(_listElement, _data) {
     _data.items.forEach((serviceItem, index) =>
       cardSpawn(serviceItem, _listElement)
     );
+
+  /**Persist checked
+   * */
+  const cards = modalList.childNodes;
+  cards.forEach(card => persistChecked(card));
 }
 
 function cardSpawn(data, parent) {
@@ -275,7 +282,10 @@ function cardSpawn(data, parent) {
   parent.appendChild(listItem);
   listItem.dataset.group = parent.dataset.serviceGroup;
 }
-
+//Reset local storage on load
+localStorage.setItem("cart", JSON.stringify([]));
+//Add to cart
+const localStore = () => JSON.parse(localStorage.getItem("cart")) || [];
 //Used event propagation to target btn.
 modalList.addEventListener("click", ({ target }) => {
   const isBtn = [...target.classList].some(x => x === "btn" || "btn__icon");
@@ -285,19 +295,28 @@ modalList.addEventListener("click", ({ target }) => {
     const parentCard = target.closest("li");
     const { group, title } = parentCard.dataset;
 
-    parentCard.classList.toggle("checked");
-
-    const item = {
+    let item = {
       title,
       group
     };
-    debugger;
-    addToCart(item);
+    toggleItemOnCart(item);
+    /**
+     * Persist card check based on cart items
+     */
+    persistChecked(parentCard);
   } else return;
 });
-function addToCart(item) {
+function persistChecked(card) {
+  const isInCart = localStore().some(p => p.title === card.dataset.title);
+  console.log(isInCart);
+  if (isInCart) {
+    card.classList.add("checked");
+  } else {
+    card.classList.remove("checked");
+  }
+}
+function toggleItemOnCart(item) {
   // const cartItems = CartState.set(item);
-  const localStore = () => JSON.parse(localStorage.getItem("cart")) || [];
   const cart = localStore();
   const alreadyExists = cart.some(p => p.title === item.title);
   let updatedCart;
