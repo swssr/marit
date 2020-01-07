@@ -230,7 +230,7 @@ function populateList(_listElement, _data) {
       cardSpawn(serviceItem, _listElement)
     );
 
-  /**Persist checked
+  /**Persist checked state form item cards
    * */
   const cards = modalList.childNodes;
   cards.forEach(card => persistChecked(card));
@@ -304,11 +304,16 @@ modalList.addEventListener("click", ({ target }) => {
      * Persist card check based on cart items
      */
     persistChecked(parentCard);
+    /**
+     * FInally, update cart item counter
+     * Inside in enquiry.js
+     */
+    updateCartCounter();
   } else return;
 });
+
 function persistChecked(card) {
   const isInCart = localStore().some(p => p.title === card.dataset.title);
-  console.log(isInCart);
   if (isInCart) {
     card.classList.add("checked");
   } else {

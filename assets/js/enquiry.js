@@ -49,9 +49,18 @@ const handleInitialSubmit = e => {
   const isValidEmail = isEmail(sender);
   modalEnq.classList.add("modal--small");
   /**
+   * Build default enquiry message
+   */
+  const enquiryMessageText =
+    "Hi, awesome people! I need information on - " +
+    (localStore() &&
+      localStore()
+        .map(p => `${p.title}`)
+        .join(", "));
+  /**
    * Validate user email, bind email to state if vaild, signal error if invaild
    */
-  isValidEmail ? bindEnquiry(sender, "initial test message") : hasError(form);
+  isValidEmail ? bindEnquiry(sender, enquiryMessageText) : hasError(form);
   /**
    * Close modal afterward
    */
@@ -129,4 +138,17 @@ const enquiryEmail = document.querySelector("#modalEmail");
 btnSubmitEnq.addEventListener("click", () => {
   bindEnquiry(enquiryEmail.value, enquiryBody.value);
   handleSubmit();
+});
+
+//Cart counter
+const cartCounter = document.querySelector(".cart-counter");
+function updateCartCounter() {
+  const count = localStore().length;
+  const surffix = count > 1 ? "ies" : "y";
+  cartCounter.textContent = `${count} enquir${surffix}`;
+}
+cartCounter.addEventListener("click", e => {
+  //TODO: toggle form
+  hasError(form);
+  hasError(heroForm);
 });
