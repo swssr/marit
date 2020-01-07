@@ -114,6 +114,41 @@ const State = {
     }
   ]
 };
+// localStorage.setItem("cart", []);
+const CartState = {
+  sender: "",
+  items: [],
+  find(item) {
+    return this.get().items.find(_item => _item.p === item.title);
+  },
+  get() {
+    /**
+     * @summary WIll get cart object from local storage.
+     * @desc Get latest cart from local storage
+     * @returns cart object.
+     * */
+    const cartStr = localStorage.getItem("cart");
+    return cartStr ? JSON.parse(cartStr) : { items: [] };
+  },
+  set(item) {
+    //@params
+    console.log({ item });
+    const cart = this.get();
+    this.items = cart.items;
+    !this.find(item) && localStorage.setItem("cart", JSON.stringify(cart));
+    return { item, cart };
+  },
+  remove(item = {}) {
+    const updatedCart = this.cart.filter(x => x.title !== item.title);
+    this.reset(updatedCart);
+    return updatedCart;
+  },
+  reset(force = []) {
+    const cartStr = JSON.stringify(force);
+    localStorage.setItem("cart", cartStr);
+  }
+};
+
 //Foreach buttom with "learn more" or "show details" text show dialog/modal
 let data = null;
 const wideLists = document.querySelectorAll(".wide-list");
@@ -127,11 +162,12 @@ serviceTriggers.forEach((_trigger, index) => {
     //
     const { isForm } = e.currentTarget.dataset;
     data = State.services[index];
-    modals.forEach(modal => resetModal(modal));
+    resetModal(true);
 
     if (data || isForm) {
       modalList.style.display = "flex";
       populateList(modalList, data);
+      popup.classList.add("modal--fullscreen");
     } else {
       popup.classList.add("modal--small");
     }
@@ -181,14 +217,22 @@ wideLists.forEach(listEl => {
   });
 });
 //
+
 function populateList(_listElement, _data) {
   _listElement.innerHTML = "";
-  data && data.items && _data.items.forEach(x => cardSpawn(x, _listElement));
+  _listElement.dataset.serviceGroup = _data.name;
+
+  data &&
+    data.items &&
+    _data.items.forEach((serviceItem, index) =>
+      cardSpawn(serviceItem, _listElement)
+    );
 }
 
 function cardSpawn(data, parent) {
   const listItem = document.createElement("li");
   listItem.className = "list__item";
+  listItem.dataset.title = data.label;
 
   const itemName = document.createElement("h3");
   itemName.classList.add("item__name");
@@ -229,6 +273,7 @@ function cardSpawn(data, parent) {
 
   ///
   parent.appendChild(listItem);
+  listItem.dataset.group = parent.dataset.serviceGroup;
 }
 
 //Used event propagation to target btn.
@@ -236,18 +281,45 @@ modalList.addEventListener("click", ({ target }) => {
   const isBtn = [...target.classList].some(x => x === "btn" || "btn__icon");
   if (isBtn) {
     const btn = target;
+
     const parentCard = target.closest("li");
+    const { group, title } = parentCard.dataset;
 
     parentCard.classList.toggle("checked");
+
+    const item = {
+      title,
+      group
+    };
+    debugger;
+    addToCart(item);
   } else return;
 });
-
-function resetModal(modal, all = false) {
+function addToCart(item) {
+  // const cartItems = CartState.set(item);
+  const localStore = () => JSON.parse(localStorage.getItem("cart")) || [];
+  const cart = localStore();
+  const alreadyExists = cart.some(p => p.title === item.title);
+  let updatedCart;
+  if (!alreadyExists) {
+    updatedCart = [...cart, item];
+    const cartStr = JSON.stringify(updatedCart);
+    localStorage.setItem("cart", cartStr);
+  } else {
+    updatedCart = localStore().filter(p => p.title !== item.title);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  }
+}
+function resetModal(all = false, modal) {
   modalList.style.display = "none";
   // modal.querySelector("ul").style.display = "none";
 
-  popup.classList.remove("modal--small");
-  modalEnq.classList.remove("modal--large");
+  all &&
+    modals.forEach(_modal => {
+      _modal.classList.remove("modal--small");
+      _modal.classList.remove("modal--large");
+      _modal.classList.remove("modal--fullscreen");
+    });
 }
 //Close modal
 modalClose.forEach(btn => {
@@ -257,7 +329,8 @@ modalClose.forEach(btn => {
 function handleModalClose(_event) {
   const _modal = _event.currentTarget;
   _modal.closest("dialog").close();
-  resetModal(_modal);
+
+  resetModal(true, _modal);
 }
 //card hover
 const switchList = (node, arr) => {

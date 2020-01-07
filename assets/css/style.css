@@ -500,7 +500,9 @@ h4,
   padding-top: 0;
   padding-bottom: 0;
 }
-
+.with-checkbox {
+  width: 10rem;
+}
 .service--more::before {
   bottom: 0 !important;
   height: 100% !important;
@@ -1034,6 +1036,17 @@ address {
   animation: spin infinite 1000ms linear;
   z-index: 99999;
 }
+.cart {
+  width: 4rem;
+  height: 2rem;
+  position: fixed;
+  background-color: red;
+  border-radius: 2rem;
+  margin-top: calc(100vh - var(--mn-pad));
+  margin-left: calc(100vw - var(--mn-pad));
+  margin-left: calc(50vw - 2rem);
+  z-index: 9999999999;
+}
 
 @keyframes spin {
   0% {
@@ -1118,6 +1131,10 @@ address {
   /* bottom: 0; */
 }
 
+.modal--fullscreen {
+  width: 100vw;
+  height: 100vh;
+}
 .modal--large {
   width: var(--w);
   height: 80vh;
@@ -1687,6 +1704,11 @@ address {
 
   .footer__head {
     width: 100%;
+  }
+
+  .cart {
+    transform: none;
+    margin-top: calc(100vh - var(--mn-pad) * 2);
   }
 }
 

@@ -47,6 +47,7 @@ const handleInitialSubmit = e => {
   //Email validation
   const sender = emailInput.value.trim();
   const isValidEmail = isEmail(sender);
+  modalEnq.classList.add("modal--small");
   /**
    * Validate user email, bind email to state if vaild, signal error if invaild
    */
