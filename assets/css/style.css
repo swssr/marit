@@ -1043,13 +1043,13 @@ address {
   height: 2rem;
   position: fixed;
   border-radius: 4px;
-  margin-top: calc(100vh - var(--mn-pad));
   margin-left: calc(100vw - var(--mn-pad) * 2);
-  /* margin-left: calc(50vw - 2rem); */
+  /* margin-top: calc(100vh - var(--mn-pad)); */
+  /* margin-left: calc(50vw - var(--w) / 2); */
+  /* margin-left: var(--mn-pad); */
   z-index: 9999999999;
 
   display: grid;
-  place-content: center;
 
   font-family: inherit;
   font-weight: bold;
@@ -1058,6 +1058,25 @@ address {
 
   cursor: pointer;
   transition: all 4000ms ease-out linear;
+  animation: bounce 1500ms linear forwards infinite;
+  --displacement: 8%;
+}
+@keyframes bounce {
+  0% {
+    transform: translateY(calc(-1 * var(--displacement)));
+  }
+  25% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(var(--displacement));
+  }
+  75% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(calc(-1 * var(--displacement)));
+  }
 }
 .cart-counter:empty {
   margin-top: 110vh;
