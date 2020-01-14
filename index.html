@@ -110,6 +110,10 @@
       </div>
       <button id="btnModalClose" class="btn btn--modal"></button>
     </dialog>
+    <dialog class="modal modal--map"
+      ><div class="rows">
+        <button id="btnModalClose" class="btn btn--modal"></button></div
+    ></dialog>
     <div class="backdrop"></div>
     <!-- START HEADER -->
     <header id="header" class="container">
@@ -403,7 +407,7 @@
               331 West Street, <br />
               Durban, KZN
             </p>
-            <button class="link link--more">view map</button>
+            <button id="btnShowMap" class="link link--more">view map</button>
           </div>
         </div>
       </section>
@@ -497,7 +501,9 @@
       </div>
     </footer>
     <script src="assets/lib/dialog-polyfill.js"></script>
+    <script defer src="assets/js/utils.js"></script>
     <script defer src="assets/js/index.js"></script>
     <script defer src="assets/js/enquiry.js"></script>
+    <script defer src="assets/js/map.js"></script>
   </body>
 </html>

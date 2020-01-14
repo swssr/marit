@@ -1,21 +1,3 @@
-const nav = document.querySelector(".nav--top");
-const header = document.querySelector("header");
-const navOption = {
-  root: null,
-  rootMargin: "0px",
-  threshold: 0.8
-};
-function toggleNav([entry]) {
-  if (!entry.isIntersecting) {
-    nav.classList.add("nav--up");
-  } else {
-    nav.classList.remove("nav--up");
-  }
-}
-const navIO = new IntersectionObserver(toggleNav, navOption);
-
-navIO.observe(header);
-
 //Modal toggler
 const readMoreBtns = document.querySelectorAll(".card--info .link--more");
 const details = document.querySelectorAll(".card--info details summary");
@@ -114,49 +96,15 @@ const State = {
     }
   ]
 };
-// localStorage.setItem("cart", []);
-const CartState = {
-  sender: "",
-  items: [],
-  find(item) {
-    return this.get().items.find(_item => _item.p === item.title);
-  },
-  get() {
-    /**
-     * @summary WIll get cart object from local storage.
-     * @desc Get latest cart from local storage
-     * @returns cart object.
-     * */
-    const cartStr = localStorage.getItem("cart");
-    return cartStr ? JSON.parse(cartStr) : { items: [] };
-  },
-  set(item) {
-    //@params
-    console.log({ item });
-    const cart = this.get();
-    this.items = cart.items;
-    !this.find(item) && localStorage.setItem("cart", JSON.stringify(cart));
-    return { item, cart };
-  },
-  remove(item = {}) {
-    const updatedCart = this.cart.filter(x => x.title !== item.title);
-    this.reset(updatedCart);
-    return updatedCart;
-  },
-  reset(force = []) {
-    const cartStr = JSON.stringify(force);
-    localStorage.setItem("cart", cartStr);
-  }
-};
 
-//Foreach buttom with "learn more" or "show details" text show dialog/modal
-let data = null;
+//Foreach "learn more" or "show details" button click, show dialog/modal
 const wideLists = document.querySelectorAll(".wide-list");
 const [modalList, projectList] = wideLists;
 
 const subText = document.querySelector(".modal .subtext");
 const serviceTriggers = document.querySelectorAll(".service .link--more");
 
+let data = null;
 serviceTriggers.forEach((_trigger, index) => {
   _trigger.addEventListener("click", e => {
     //
@@ -283,7 +231,7 @@ function cardSpawn(data, parent) {
   listItem.dataset.group = parent.dataset.serviceGroup;
 }
 //Reset local storage on load
-localStorage.setItem("cart", JSON.stringify([]));
+localStorage.setItem("cart", "[]");
 //Add to cart
 const localStore = () => JSON.parse(localStorage.getItem("cart")) || [];
 //Used event propagation to target btn.
@@ -321,7 +269,6 @@ function persistChecked(card) {
   }
 }
 function toggleItemOnCart(item) {
-  // const cartItems = CartState.set(item);
   const cart = localStore();
   const alreadyExists = cart.some(p => p.title === item.title);
   let updatedCart;
@@ -336,8 +283,6 @@ function toggleItemOnCart(item) {
 }
 function resetModal(all = false, modal) {
   modalList.style.display = "none";
-  // modal.querySelector("ul").style.display = "none";
-
   all &&
     modals.forEach(_modal => {
       _modal.classList.remove("modal--small");
@@ -381,27 +326,3 @@ navLinks.forEach(link =>
     btnMenu.click();
   })
 );
-
-//Utility functions
-function isEmail(_phrase) {
-  const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return pattern.test(_phrase);
-}
-
-function hasError(node) {
-  isElement(node) && node.classList.add("hasError");
-  setTimeout(() => node.classList.remove("hasError"), 400);
-}
-
-function isElement(obj) {
-  try {
-    return obj instanceof HTMLElement;
-  } catch (e) {
-    return (
-      typeof obj === "object" &&
-      obj.nodeType === 1 &&
-      typeof obj.style === "object" &&
-      typeof obj.ownerDocument === "object"
-    );
-  }
-}
