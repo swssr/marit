@@ -33,7 +33,7 @@ heroForm.addEventListener("submit", e => {
   e.preventDefault();
   const heroEmail = heroForm.querySelector("#hero__email").value;
   isEmail(heroEmail)
-    ? handleSubmit(heroEmail, "From heroo section")
+    ? prepareSubmit(heroEmail, "From heroo section")
     : hasError(heroForm);
 });
 /**
@@ -120,7 +120,7 @@ async function submitEnquiry(body) {
 }
 
 //TODO:implement rate limiting on server
-function handleSubmit(sender = getEmail(), text = getText()) {
+function prepareSubmit(sender = getEmail(), text = getText()) {
   const body = {
     sender,
     text
@@ -131,13 +131,13 @@ function handleSubmit(sender = getEmail(), text = getText()) {
   btnJustSubmit.closest("dialog").close();
 }
 
-btnJustSubmit.addEventListener("click", handleSubmit);
+btnJustSubmit.addEventListener("click", prepareSubmit);
 
 const enquiryEmail = document.querySelector("#modalEmail");
 
 btnSubmitEnq.addEventListener("click", () => {
   bindEnquiry(enquiryEmail.value, enquiryBody.value);
-  handleSubmit();
+  prepareSubmit();
 });
 
 //Cart counter

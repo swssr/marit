@@ -929,10 +929,6 @@ details summary {
   cursor: pointer;
 }
 
-details[open] summary {
-  /* TODO: Show that it's collapsable */
-}
-
 @keyframes show {
   from {
     opacity: 0;
