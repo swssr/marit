@@ -102,22 +102,6 @@ function showToast(msg, error = false) {
     ? !popup.open && popup.showModal()
     : alert("Dialog not supported");
 }
-/**
- * This submit the enquiry to a email server
- * */
-async function submitEnquiry(body) {
-  const url = "https://filr-server.appspot.com/api/messages";
-  const headers = { "Content-Type": "application/json" };
-  const options = { body: JSON.stringify(body), method: "POST", headers };
-
-  loader.style.display = "block";
-
-  await fetch(url, options)
-    .then(res => {
-      showToast(res);
-    })
-    .catch(res => showToast(res, true));
-}
 
 //TODO:implement rate limiting on server
 function prepareSubmit(sender = getEmail(), text = getText()) {
@@ -139,6 +123,23 @@ btnSubmitEnq.addEventListener("click", () => {
   bindEnquiry(enquiryEmail.value, enquiryBody.value);
   prepareSubmit();
 });
+
+/**
+ * This submit the enquiry to a email server
+ * */
+async function submitEnquiry(body) {
+  const url = "https://filr-server.appspot.com/api/messages";
+  const headers = { "Content-Type": "application/json" };
+  const options = { body: JSON.stringify(body), method: "POST", headers };
+
+  loader.style.display = "block";
+
+  await fetch(url, options)
+    .then(res => {
+      showToast(res);
+    })
+    .catch(res => showToast(res, true));
+}
 
 //Cart counter
 const cartCounter = document.querySelector(".cart-counter");
