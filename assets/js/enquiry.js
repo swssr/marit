@@ -15,6 +15,9 @@ const setEmail = _sender => localStorage.setItem("sender", _sender);
 const getText = () => localStorage.getItem("text");
 const setText = _text => localStorage.setItem("text", _text);
 
+const DEFAULT_ENQUIRY_MSG =
+  "Hello, please email me back, I need information on your offerrings!";
+
 const bindEnquiry = (_sender, _text) => {
   setEmail(_sender);
   setText(_text);
@@ -33,7 +36,7 @@ heroForm.addEventListener("submit", e => {
   e.preventDefault();
   const heroEmail = heroForm.querySelector("#hero__email").value;
   isEmail(heroEmail)
-    ? prepareSubmit(heroEmail, "From heroo section")
+    ? prepareSubmit(heroEmail, DEFAULT_ENQUIRY_MSG)
     : hasError(heroForm);
 });
 /**
