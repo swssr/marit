@@ -942,6 +942,7 @@ details summary {
 }
 
 .link--more {
+  position: relative;
   outline: none;
   border: none;
   font-family: "Poppins";
@@ -963,6 +964,10 @@ details summary {
 }
 .link--more:hover .fas {
   transform: translateX(0.3rem);
+}
+
+#btnShowMap {
+  width: max-content;
 }
 
 .card__img {
