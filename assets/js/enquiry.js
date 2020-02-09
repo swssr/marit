@@ -16,7 +16,7 @@ const getText = () => localStorage.getItem("text");
 const setText = _text => localStorage.setItem("text", _text);
 
 const DEFAULT_ENQUIRY_MSG =
-  "Hello, please email me back, I need information on your offerrings!";
+  "Hello, please email me back, I need information on your offerrings.";
 
 const bindEnquiry = (_sender, _text) => {
   setEmail(_sender);
@@ -55,7 +55,8 @@ const handleInitialSubmit = e => {
    * Build default enquiry message
    */
   const enquiryMessageText =
-    "Hi, awesome people! I need information on - " +
+    DEFAULT_ENQUIRY_MSG +
+    " - I'm interested mostly in the following; " +
     (localStore() &&
       localStore()
         .map(p => `${p.title}`)
