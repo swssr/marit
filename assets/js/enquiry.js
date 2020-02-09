@@ -117,13 +117,19 @@ function prepareSubmit(sender = getEmail(), text = getText()) {
   submitEnquiry(body);
   enqForm.classList.remove("show");
   btnJustSubmit.closest("dialog").close();
+  console.log("Just submit");
 }
 
-btnJustSubmit.addEventListener("click", prepareSubmit);
+//If user clicks just submit on "Before you go dialog"
+const enquiryEmail = document.getElementById("email");
 
-const enquiryEmail = document.querySelector("#modalEmail");
+btnJustSubmit.addEventListener("click", () => {
+  prepareSubmit(enquiryEmail.value, DEFAULT_ENQUIRY_MSG);
+});
 
 btnSubmitEnq.addEventListener("click", () => {
+  //First bind and combine updated enquiry form date with
+  // option services cart items
   bindEnquiry(enquiryEmail.value, enquiryBody.value);
   prepareSubmit();
 });
@@ -135,7 +141,7 @@ async function submitEnquiry(body) {
   const url = "https://filr-server.appspot.com/api/messages";
   const headers = { "Content-Type": "application/json" };
   const options = { body: JSON.stringify(body), method: "POST", headers };
-
+  debugger;
   loader.style.display = "block";
 
   await fetch(url, options)
